@@ -52,6 +52,26 @@ export default function NotificationsPage() {
         }
     };
 
+    const [soundSettings, setSoundSettings] = useState({
+        mode: localStorage.getItem('notif_sound_mode') || 'default', // default, alarm, diff
+        enabled: localStorage.getItem('notif_sound_enabled') !== 'false'
+    });
+
+    const toggleSoundMode = () => {
+        const newMode = soundSettings.mode === 'default' ? 'alarm' : 'default';
+        setSoundSettings(prev => ({ ...prev, mode: newMode }));
+        localStorage.setItem('notif_sound_mode', newMode);
+
+        // Preview sound
+        if (newMode === 'alarm') {
+            const audio = new Audio('/sounds/alarm.mp3'); // We'll need to ensure this path exists or use a robust fallback logic
+            // audio.play().catch(e => console.log('Audio play failed', e)); 
+            alert('🔔 وضع المنبه: سيتم تشغيل صوت طويل وقوي عند وصول إشعار هام.');
+        } else {
+            alert('🔔 الوضع الافتراضي: صوت إشعار قياسي.');
+        }
+    };
+
     return (
         <div style={styles.wrapper}>
             <div style={styles.container}>
@@ -63,6 +83,45 @@ export default function NotificationsPage() {
                             <h1 style={{ fontSize: '22px', margin: 0 }}>التنبيهات</h1>
                         </div>
                         <button style={{ color: styles.gold, background: 'none', border: 'none', fontSize: '12px', cursor: 'pointer' }}>تحديد الكل كمقروء</button>
+                    </div>
+
+                    {/* Settings Toggles */}
+                    <div style={{
+                        background: 'rgba(30, 41, 59, 0.5)',
+                        border: '1px solid #334155',
+                        borderRadius: '12px',
+                        padding: '16px',
+                        marginBottom: '24px'
+                    }}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '12px' }}>
+                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                <span style={{ fontSize: '18px' }}>🔊</span>
+                                <div>
+                                    <div style={{ fontWeight: 'bold', fontSize: '14px' }}>صوت التنبيه</div>
+                                    <div style={{ fontSize: '11px', color: '#94a3b8' }}>
+                                        {soundSettings.mode === 'alarm' ? 'نغمة تنبيه قوية (منبه)' : 'صوت إشعار قياسي'}
+                                    </div>
+                                </div>
+                            </div>
+                            <button
+                                onClick={toggleSoundMode}
+                                style={{
+                                    background: soundSettings.mode === 'alarm' ? '#ef4444' : '#334155',
+                                    color: 'white',
+                                    border: 'none',
+                                    padding: '6px 12px',
+                                    borderRadius: '20px',
+                                    fontSize: '12px',
+                                    cursor: 'pointer',
+                                    transition: 'background 0.2s'
+                                }}
+                            >
+                                {soundSettings.mode === 'alarm' ? 'وضع المنبه 🔔' : 'عادي 🎵'}
+                            </button>
+                        </div>
+                        <div style={{ fontSize: '10px', color: '#64748b', lineHeight: '1.4' }}>
+                            * ملاحظة: لضمان عمل التنبيهات والصوت عند إغلاق التطبيق، تأكد من تثبيت التطبيق وتفعيل الإشعارات من إعدادات جهازك.
+                        </div>
                     </div>
 
                     {/* List */}

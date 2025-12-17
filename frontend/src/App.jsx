@@ -18,6 +18,7 @@ import DesignGallery from './pages/DesignGallery';
 import ActivityPage from './pages/ActivityPage';
 import HistoryPage from './pages/HistoryPage';
 import NotificationsPage from './pages/NotificationsPage';
+import LiveChartPage from './pages/LiveChartPage';
 
 function App() {
   // System Notification Setup
@@ -27,6 +28,27 @@ function App() {
         Notification.requestPermission();
       }
     }
+  }, []);
+
+  // Keep-Alive System - Prevents backend from sleeping on Render
+  React.useEffect(() => {
+    const keepAlive = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
+        await fetch(`${apiUrl}/health`);
+        console.log('⚡ Keep-alive ping sent');
+      } catch (error) {
+        console.warn('Keep-alive failed:', error);
+      }
+    };
+
+    // Ping immediately on load
+    keepAlive();
+
+    // Then ping every 5 minutes (300000ms)
+    const interval = setInterval(keepAlive, 300000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -40,6 +62,7 @@ function App() {
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/trades" element={<TradesPage />} />
         <Route path="/charts" element={<ChartCenterPage />} />
+        <Route path="/live-chart" element={<LiveChartPage />} />
         <Route path="/reporter" element={<ReporterPage />} />
         <Route path="/more" element={<MorePage />} />
         <Route path="/time-machine" element={<TimeMachinePage />} />

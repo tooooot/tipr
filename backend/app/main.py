@@ -87,6 +87,17 @@ def root():
     return {"message": "TIBR API v2.0", "status": "running"}
 
 
+@app.get("/health")
+def health_check():
+    """Health check endpoint to keep server alive and monitor status"""
+    return {
+        "status": "healthy",
+        "timestamp": datetime.now().isoformat(),
+        "service": "Tipr Backend",
+        "version": "2.0"
+    }
+
+
 @app.get("/api/bots")
 def get_bots():
     return {"data": BOTS, "count": len(BOTS)}

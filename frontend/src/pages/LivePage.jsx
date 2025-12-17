@@ -214,167 +214,150 @@ export default function LivePage() {
                 </div>
             </div>
 
-            {/* 2. Hero Section */}
-            <div className={`hero-section ${activeSlide.bgClass}`}>
-                {!isStreamMode && (
-                    <div className="market-pulse-ticker">
-                        <div className="ticker-content">
-                            {[...TICKER_ITEMS, ...TICKER_ITEMS].map((item, idx) => (
-                                <div key={idx} className="ticker-item">
-                                    <span style={{ color: '#fff' }}>{item.symbol}</span>
-                                    <span className={item.up ? 'price-up' : 'price-down'}>
-                                        {item.price} ({item.change})
-                                    </span>
+            {/* 2. Stream Mode Conditional Rendering */}
+            {isStreamMode ? (
+                // ... Stream Content ...
+                <div style={styles.page}>
+                    {/* ... Header ... */}
+                    <header style={{
+                        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                        padding: '24px 20px',
+                        marginBottom: '10px',
+                        background: 'linear-gradient(180deg, #0f172a 0%, transparent 100%)'
+                    }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                            <div style={{
+                                width: '55px', height: '55px',
+                                background: 'linear-gradient(135deg, #FFD700, #FDB931)',
+                                borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                boxShadow: '0 0 20px rgba(253, 185, 49, 0.3)'
+                            }}>
+                                <span style={{ fontSize: '32px' }}>🦁</span>
+                            </div>
+                            <div>
+                                <h1 style={{ fontSize: '26px', fontWeight: '900', margin: 0, letterSpacing: '-0.5px' }}>Tipr Live</h1>
+                                <span style={{ fontSize: '14px', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                                    <span style={{ width: '8px', height: '8px', background: '#22c55e', borderRadius: '50%', boxShadow: '0 0 10px #22c55e' }}></span>
+                                    بث مباشر للفرص
+                                </span>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* ... Hero (Stream) ... */}
+                    <div className="hero-section" style={{ padding: '0 20px', marginBottom: '30px' }}>
+                        {/* Slide 1: Challenge Progress */}
+                        {currentSlide % 2 === 0 && (
+                            <div className="animate-fade-in" style={{
+                                background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+                                borderRadius: '24px',
+                                padding: '30px 20px',
+                                border: '1px solid #334155',
+                                textAlign: 'center',
+                                boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)',
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}>
+                                <div style={{ position: 'absolute', top: '-20%', left: '-20%', width: '140%', height: '140%', background: 'radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%)' }}></div>
+                                <h2 style={{ fontSize: '20px', color: '#94a3b8', margin: '0 0 10px 0' }}>تحدي المليون 🏆</h2>
+                                <div style={{ fontSize: '56px', fontWeight: '900', color: 'white', lineHeight: '1', marginBottom: '10px', letterSpacing: '-2px' }}>
+                                    124,500
+                                    <span style={{ fontSize: '24px', color: styles.gold, verticalAlign: 'top', marginLeft: '5px' }}>SR</span>
                                 </div>
+                                <div style={{
+                                    background: 'rgba(34, 197, 94, 0.1)', color: '#4ade80',
+                                    padding: '6px 16px', borderRadius: '99px', fontSize: '18px', fontWeight: 'bold',
+                                    display: 'inline-block', border: '1px solid rgba(34, 197, 94, 0.2)'
+                                }}>
+                                    +24.5% ربح محقق 🚀
+                                </div>
+                            </div>
+                        )}
+                        {/* Slide 2: Performance Summary */}
+                        {currentSlide % 2 !== 0 && (
+                            <div className="animate-fade-in" style={{
+                                background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+                                borderRadius: '24px',
+                                padding: '30px 20px',
+                                border: '1px solid #334155',
+                                textAlign: 'center',
+                                boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)',
+                                position: 'relative',
+                                overflow: 'hidden'
+                            }}>
+                                <div style={{ position: 'absolute', top: '-20%', left: '-20%', width: '140%', height: '140%', background: 'radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%)' }}></div>
+                                <h2 style={{ fontSize: '20px', color: '#94a3b8', margin: '0 0 10px 0' }}>متوسط الأداء الجماعي</h2>
+                                <div className={`slide-value large-num ${stats.totalProfit >= 0 ? 'green-text' : 'red-text'}`} style={{ fontSize: '56px', fontWeight: '900', lineHeight: '1', marginBottom: '10px', letterSpacing: '-2px' }}>
+                                    {stats.totalProfit > 0 ? '+' : ''}{stats.totalProfit}%
+                                </div>
+                                <div style={{ fontSize: '18px', color: '#94a3b8', marginTop: '10px' }}>
+                                    إجمالي الصفقات المنفذة: {stats.totalTrades}
+                                </div>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            ) : (
+                // ... Normal Mobile Content ...
+                <>
+                    <div className={`hero-section ${activeSlide.bgClass}`}>
+                        <div className="hero-content-wrapper">
+                            {activeSlide.component}
+                        </div>
+                        <div className="carousel-dots">
+                            {SLIDES_CONFIG.map((_, idx) => (
+                                <div
+                                    key={idx}
+                                    className={`dot ${currentSlide === idx ? 'active' : ''}`}
+                                    onClick={() => setCurrentSlide(idx)}
+                                />
                             ))}
                         </div>
                     </div>
-                )}
 
-                {isStreamMode ? (
-                    <div style={styles.page}>
-                        {/* --- HEADER (Clean for Stream) --- */}
-                        <header style={{
-                            display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                            padding: '24px 20px',
-                            marginBottom: '10px',
-                            background: 'linear-gradient(180deg, #0f172a 0%, transparent 100%)'
-                        }}>
-                            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                <div style={{
-                                    width: '55px', height: '55px',
-                                    background: 'linear-gradient(135deg, #FFD700, #FDB931)',
-                                    borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                    boxShadow: '0 0 20px rgba(253, 185, 49, 0.3)'
-                                }}>
-                                    <span style={{ fontSize: '32px' }}>🦁</span>
-                                </div>
-                                <div>
-                                    <h1 style={{ fontSize: '26px', fontWeight: '900', margin: 0, letterSpacing: '-0.5px' }}>Tipr Live</h1>
-                                    <span style={{ fontSize: '14px', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                                        <span style={{ width: '8px', height: '8px', background: '#22c55e', borderRadius: '50%', boxShadow: '0 0 10px #22c55e' }}></span>
-                                        بث مباشر للفرص
-                                    </span>
-                                </div>
-                            </div>
-                        </header>
-
-                        {/* --- HERO SECTION (Vertical Optimized) --- */}
-                        <div className="hero-section" style={{ padding: '0 20px', marginBottom: '30px' }}>
-                            {/* Slide 1: Challenge Progress */}
-                            {heroSlide === 0 && (
-                                <div className="animate-fade-in" style={{
-                                    background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
-                                    borderRadius: '24px',
-                                    padding: '30px 20px',
-                                    border: '1px solid #334155',
-                                    textAlign: 'center',
-                                    boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)',
-                                    position: 'relative',
-                                    overflow: 'hidden'
-                                }}>
-                                    <div style={{ position: 'absolute', top: '-20%', left: '-20%', width: '140%', height: '140%', background: 'radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%)' }}></div>
-                                    <h2 style={{ fontSize: '20px', color: '#94a3b8', margin: '0 0 10px 0' }}>تحدي المليون 🏆</h2>
-                                    <div style={{ fontSize: '56px', fontWeight: '900', color: 'white', lineHeight: '1', marginBottom: '10px', letterSpacing: '-2px' }}>
-                                        124,500
-                                        <span style={{ fontSize: '24px', color: styles.gold, verticalAlign: 'top', marginLeft: '5px' }}>SR</span>
-                                    </div>
-                                    <div style={{
-                                        background: 'rgba(34, 197, 94, 0.1)', color: '#4ade80',
-                                        padding: '6px 16px', borderRadius: '99px', fontSize: '18px', fontWeight: 'bold',
-                                        display: 'inline-block', border: '1px solid rgba(34, 197, 94, 0.2)'
-                                    }}>
-                                        +24.5% ربح محقق 🚀
-                                    </div>
-                                </div>
-                            )}
-                            {/* Slide 2: Performance Summary */}
-                            {heroSlide === 1 && (
-                                <div className="animate-fade-in" style={{
-                                    background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
-                                    borderRadius: '24px',
-                                    padding: '30px 20px',
-                                    border: '1px solid #334155',
-                                    textAlign: 'center',
-                                    boxShadow: '0 10px 40px -10px rgba(0,0,0,0.5)',
-                                    position: 'relative',
-                                    overflow: 'hidden'
-                                }}>
-                                    <div style={{ position: 'absolute', top: '-20%', left: '-20%', width: '140%', height: '140%', background: 'radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 70%)' }}></div>
-                                    <h2 style={{ fontSize: '20px', color: '#94a3b8', margin: '0 0 10px 0' }}>متوسط الأداء الجماعي</h2>
-                                    <div className={`slide-value large-num ${stats.totalProfit >= 0 ? 'green-text' : 'red-text'}`} style={{ fontSize: '56px', fontWeight: '900', lineHeight: '1', marginBottom: '10px', letterSpacing: '-2px' }}>
-                                        {stats.totalProfit > 0 ? '+' : ''}{stats.totalProfit}%
-                                    </div>
-                                    <div style={{ fontSize: '18px', color: '#94a3b8', marginTop: '10px' }}>
-                                        إجمالي الصفقات المنفذة: {stats.totalTrades}
-                                    </div>
-                                </div>
-                            )}
+                    {/* 3. Transparency Ticker */}
+                    <div className="transparency-ticker">
+                        <div className="ticker-content">
+                            <span className="transparency-item" style={{ color: '#fbbf24' }}>🔴 بيانات حية</span>
+                            <span className="transparency-item" style={{ color: 'white' }}>⚡ تحديث لحظي</span>
+                            <span className="transparency-item" style={{ color: '#22c55e' }}>💰 أداء وشفافية</span>
                         </div>
                     </div>
-                ) : (
-                    <>
-                        {/* 2. Hero Section */}
-                        <div className={`hero-section ${activeSlide.bgClass}`}>
-                            <div className="hero-content-wrapper">
-                                {activeSlide.component}
-                            </div>
-                            <div className="carousel-dots">
-                                {SLIDES_CONFIG.map((_, idx) => (
-                                    <div
-                                        key={idx}
-                                        className={`dot ${currentSlide === idx ? 'active' : ''}`}
-                                        onClick={() => setCurrentSlide(idx)}
-                                    />
-                                ))}
-                            </div>
-                        </div>
+                </>
+            )}
 
-                        {/* 3. Transparency Ticker */}
-                        <div className="transparency-ticker">
-                            <div className="ticker-content">
-                                <span className="transparency-item" style={{ color: '#fbbf24' }}>🔴 بيانات حية</span>
-                                <span className="transparency-item" style={{ color: 'white' }}>⚡ تحديث لحظي</span>
-                                <span className="transparency-item" style={{ color: '#22c55e' }}>💰 أداء وشفافية</span>
-                                <span className="transparency-item" style={{ color: '#fbbf24' }}>🔴 بيانات حية</span>
-                                <span className="transparency-item" style={{ color: 'white' }}>⚡ تحديث لحظي</span>
-                            </div>
-                        </div>
-                    </>
-                )}
-
-                {/* 4. Live Feed */}
-                <div className="activity-feed-section" style={isStreamMode ? { height: 'calc(100vh - 400px)' } : {}}>
-                    <div className="feed-header">
-                        <span>⚡ نبض السوق</span>
-                        <div className="live-indicator"></div>
-                    </div>
-
-                    <div className="feed-list">
-                        {stats.feed.map((item, i) => (
-                            <div
-                                key={i}
-                                className="feed-card"
-                                onClick={() => {
-                                    if (item.botId && !isStreamMode) navigate(`/bot/${item.botId}`);
-                                }}
-                                style={{ cursor: item.botId && !isStreamMode ? 'pointer' : 'default' }}
-                            >
-                                <div className={`status-bar status-${item.type}`}></div>
-                                <div className={`feed-icon icon-bg-${item.type}`}>
-                                    {item.type === 'win' || item.type === 'buy' ? '🟢' : item.type === 'loss' || item.type === 'sell' ? '🔴' : '🔵'}
-                                </div>
-                                <div className="feed-content">
-                                    <span className="robot-name">{item.botName}</span>
-                                    <div className="feed-desc">{item.desc}</div>
-                                </div>
-                                <div className="feed-time">{item.time || 'الآن'}</div>
-                            </div>
-                        ))}
-                    </div>
+            {/* 4. Live Feed */}
+            <div className="activity-feed-section" style={isStreamMode ? { height: 'calc(100vh - 400px)' } : {}}>
+                <div className="feed-header">
+                    <span>⚡ نبض السوق</span>
+                    <div className="live-indicator"></div>
                 </div>
 
-                {!isStreamMode && <BottomNav />}
+                <div className="feed-list">
+                    {stats.feed.map((item, i) => (
+                        <div
+                            key={i}
+                            className="feed-card"
+                            onClick={() => {
+                                if (item.botId && !isStreamMode) navigate(`/bot/${item.botId}`);
+                            }}
+                            style={{ cursor: item.botId && !isStreamMode ? 'pointer' : 'default' }}
+                        >
+                            <div className={`status-bar status-${item.type}`}></div>
+                            <div className={`feed-icon icon-bg-${item.type}`}>
+                                {item.type === 'win' || item.type === 'buy' ? '🟢' : item.type === 'loss' || item.type === 'sell' ? '🔴' : '🔵'}
+                            </div>
+                            <div className="feed-content">
+                                <span className="robot-name">{item.botName}</span>
+                                <div className="feed-desc">{item.desc}</div>
+                            </div>
+                            <div className="feed-time">{item.time || 'الآن'}</div>
+                        </div>
+                    ))}
+                </div>
             </div>
-            );
+
+            {!isStreamMode && <BottomNav />}
+        </div>
+    );
 }
