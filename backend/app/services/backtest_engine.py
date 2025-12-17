@@ -199,13 +199,46 @@ class BacktestEngine:
         
         price_data = {}
         
-        # محاولة التحميل من الكاش أولاً
-        if os.path.exists(cache_file):
-            print(f"📂 جاري تحميل بيانات {self.market_type} من الكاش...")
+        # محاولة التحميل من ملف "المصدر الرسمي المحلي" (Seed Data)
+        seed_file = "backend/data/real_market_data.json"
+        
+        if os.path.exists(seed_file):
+            print(f"📂 جاري تحميل البيانات من الملف المركزي (Seed Data)...")
+            try:
+                with open(seed_file, "r", encoding='utf-8') as f:
+                    seeded_data = json.load(f)
+                    
+                    # استخراج بيانات السوق المطلوب
+                    if self.market_type in seeded_data:
+                        market_data = seeded_data[self.market_type]
+                        
+                        # تحويل التواريخ
+                        for symbol, records in market_data.items():
+                            clean_records = []
+                            for r in records:
+                                try:
+                                    r_copy = r.copy()
+                                    r_copy["date"] = datetime.strptime(r["date"], "%Y-%m-%dT%H:%M:%S")
+                                    clean_records.append(r_copy)
+                                except:
+                                    pass # Skip bad dates
+                            
+                            if clean_records:
+                                price_data[symbol] = clean_records
+                                
+                        if price_data:
+                            print(f"✅ تم تحميل {len(price_data)} سهم من البيانات المركزية الموثقة.")
+                            self.available_stocks = list(price_data.keys())
+                            return price_data
+            except Exception as e:
+                print(f"⚠️ فشل قراءة ملف Seed: {e}")
+
+        # محاولة التحميل من الكاش العادي (القديم)
+        if os.path.exists(cache_file) and not price_data:
+            print(f"📂 جاري تحميل بيانات {self.market_type} من الكاش المؤقت...")
             try:
                 with open(cache_file, "r") as f:
                     cached_data = json.load(f)
-                    # تحويل التواريخ للنصوص
                     for symbol, data in cached_data.items():
                         for d in data:
                             d["date"] = datetime.strptime(d["date"], "%Y-%m-%dT%H:%M:%S")
