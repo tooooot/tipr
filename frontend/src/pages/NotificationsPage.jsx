@@ -14,8 +14,9 @@ export default function NotificationsPage() {
 
     useEffect(() => {
         // 1. Get Copied Bots (User Preference)
-        const rawCopied = JSON.parse(localStorage.getItem('copiedBots') || '[]');
-        // Normalize: copiedBots stores objects {id: '...'} or strings (legacy)
+        // FIX: Use 'copied_bots' to match BotProfile/Portfolio
+        const rawCopied = JSON.parse(localStorage.getItem('copied_bots') || '[]');
+        // Normalize: copied_bots stores objects {id: '...'} or strings (legacy)
         const copiedIds = rawCopied.map(b => (typeof b === 'string' ? b : b.id));
 
         // 2. Filter Live Notifications (Only from My Bots)
@@ -69,7 +70,12 @@ export default function NotificationsPage() {
                         {notifications.map((notif, index) => (
                             <div
                                 key={notif.uniqueKey}
-                                onClick={() => markAsRead(notif.id)}
+                                onClick={() => {
+                                    markAsRead(notif.id);
+                                    // Navigate if interactive
+                                    if (notif.bot_id) navigate(`/bot/${notif.bot_id}`);
+                                    else if (notif.link) window.open(notif.link, '_blank');
+                                }}
                                 style={{
                                     background: notif.read ? 'transparent' : 'rgba(30, 41, 59, 0.5)',
                                     border: '1px solid #334155',

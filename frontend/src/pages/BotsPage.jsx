@@ -6,7 +6,7 @@ import { getBotData } from '../utils/storage';
 import { styles } from '../styles/theme';
 import BottomNav from '../components/BottomNav';
 
-const DEFAULT_BOTS = [
+export const DEFAULT_BOTS = [
     // --- Universal Strategies (Originally Saudi 🇸🇦) ---
     { id: 'al_maestro', name_ar: 'المايسترو', emoji: '🤖', market: 'all', description: 'الاستراتيجية الهجينة الذكية: توازن بين النمو والأمان.', risk_level: 'متوسط', strategy_ar: 'هجين ذكي' },
     { id: 'al_qannas', name_ar: 'القناص', emoji: '🦁', market: 'all', description: 'اقتناص الفرص السريعة والمضاربة اللحظية.', risk_level: 'عالي', strategy_ar: 'مضاربة سريعة' },
