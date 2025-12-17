@@ -72,13 +72,22 @@ export default function PortfolioPage() {
         let totalProfitValue = 0;
 
         marketBots.forEach(userBot => {
-            // FIX: Use Real Engine Data
-            const botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === userBot.id) : [];
-            const totalBotProfitPct = botTrades.reduce((sum, t) => sum + (t.profit_pct || 0), 0);
+            // FIX: Use ONLY Real-Time OPEN Trades for Portfolio Value
+            // (Past history is for Time Machine, not current wallet balance)
+            const botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === userBot.id && t.status === 'open') : [];
 
-            // Assume allocated 20% of capital per bot
+            // Calculate average performance of currently open positions
+            // If multiple open positions, we average their P&L
+            let currentOpenPL = 0;
+            if (botTrades.length > 0) {
+                currentOpenPL = botTrades.reduce((sum, t) => sum + (t.profit_pct || 0), 0) / botTrades.length;
+            }
+
+            // Allocation: 20% of capital per bot
             const allocation = INITIAL_CAPITAL * 0.20;
-            totalProfitValue += allocation * (totalBotProfitPct / 100);
+
+            // Current Value = Allocation + (Allocation * Current P&L)
+            totalProfitValue += allocation * (currentOpenPL / 100);
         });
 
         return INITIAL_CAPITAL + totalProfitValue;
@@ -239,8 +248,16 @@ export default function PortfolioPage() {
                                 .filter(bot => bot.markets.includes(activeTab))
                                 .map(userBot => {
                                     const bot = bots.find(b => b.id === userBot.id);
-                                    const data = getBotData(userBot.id);
-                                    if (!bot) return null; // Loading or error
+                                    // Calculate Stats from Real Open Data Only
+                                    const botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === userBot.id && t.status === 'open') : [];
+
+                                    // Average P&L of open positions
+                                    let botProfit = 0;
+                                    if (botTrades.length > 0) {
+                                        botProfit = botTrades.reduce((sum, t) => sum + (t.profit_pct || 0), 0) / botTrades.length;
+                                    }
+
+                                    if (!bot) return null;
 
                                     return (
                                         <div key={userBot.id} style={{ ...styles.card, padding: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -256,12 +273,14 @@ export default function PortfolioPage() {
                                                 <p style={{ fontWeight: 'bold' }}>{bot.name_ar || userBot.id}</p>
                                                 <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
                                                     <span style={{ fontSize: '10px', color: styles.green, background: 'rgba(34,197,94,0.1)', padding: '2px 6px', borderRadius: '4px' }}>نشط ✅</span>
-                                                    <span style={{ fontSize: '10px', color: styles.gray }}>مخصص: 20,000</span>
+                                                    <span style={{ fontSize: '10px', color: styles.gray }}>
+                                                        {botTrades.length > 0 ? `${botTrades.length} صفقة مفتوحة` : 'ينتظر فرصة...'}
+                                                    </span>
                                                 </div>
                                             </div>
                                             <div style={{ textAlign: 'left' }}>
-                                                <p style={{ fontWeight: 'bold', color: data?.total_profit_pct >= 0 ? styles.green : styles.red }}>
-                                                    {data?.total_profit_pct || 0}%
+                                                <p style={{ fontWeight: 'bold', color: botProfit >= 0 ? styles.green : styles.red, direction: 'ltr' }}>
+                                                    {botProfit > 0 ? '+' : ''}{botProfit.toFixed(2)}%
                                                 </p>
                                                 <p style={{ fontSize: '10px', color: styles.gray }}>الأرباح</p>
                                             </div>

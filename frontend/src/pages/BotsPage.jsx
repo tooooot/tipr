@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchAPI } from '../api/api';
 import { getBotData } from '../utils/storage';
+import realTradesData from '../data/real_trades.json';
 import { styles } from '../styles/theme';
 import BottomNav from '../components/BottomNav';
 
@@ -114,9 +114,11 @@ export default function BotsPage() {
                         gap: '12px'
                     }}>
                         {filteredBots.map(bot => {
-                            const data = getBotData(bot.id);
+                            // Calculate Stats from Real Data
+                            const botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === bot.id) : [];
+                            const profit = botTrades.reduce((sum, t) => sum + (t.profit_pct || 0), 0).toFixed(2);
+
                             const marketInfo = getMarketInfo(bot);
-                            const profit = data?.total_profit_pct || 0;
                             const isPositive = profit >= 0;
 
                             return (

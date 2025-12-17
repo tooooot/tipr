@@ -73,7 +73,8 @@ export default function NotificationsPage() {
                                 onClick={() => {
                                     markAsRead(notif.id);
                                     // Navigate if interactive
-                                    if (notif.bot_id) navigate(`/bot/${notif.bot_id}`);
+                                    if (notif.trade_id) navigate(`/trade/${notif.trade_id}`);
+                                    else if (notif.bot_id) navigate(`/bot/${notif.bot_id}`);
                                     else if (notif.link) window.open(notif.link, '_blank');
                                 }}
                                 style={{

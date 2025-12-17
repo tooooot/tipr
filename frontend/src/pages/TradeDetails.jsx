@@ -45,11 +45,56 @@ export default function TradeDetails() {
 
     const isWin = parseFloat(trade.profit_pct) >= 0;
 
+    // Load Historical Data for Chart
+    const [historicalData, setHistoricalData] = useState([]);
+
+    useEffect(() => {
+        if (!trade) return;
+
+        // Dynamically import history to avoid big bundle initially? 
+        // Or just import direct if manageable. For this task, we try to fetch or import.
+        import('../data/market_history_1y.json')
+            .then(mod => {
+                const history = mod.default;
+                const marketKey = trade.market.toLowerCase();
+                const symbolKey = trade.symbol;
+
+                if (history[marketKey] && history[marketKey][symbolKey]) {
+                    setHistoricalData(history[marketKey][symbolKey]);
+                }
+            })
+            .catch(err => console.log("No history found, using fallback chart"));
+
+    }, [trade]);
+
     // --- ApexChart Config (Professional Tipr Chart) ---
     const chartSeries = [{
         name: 'Price',
         data: (() => {
             if (!trade) return [];
+
+            // 1. Data Mode: Real History
+            if (historicalData.length > 0) {
+                // Filter data around entry/exit
+                const entryDate = new Date(trade.entry_date.split('T')[0]);
+                const exitDate = new Date(trade.exit_date.split('T')[0]);
+
+                // Add padding: 5 days before, 5 days after
+                const startDate = new Date(entryDate);
+                startDate.setDate(startDate.getDate() - 10);
+
+                const endDate = new Date(exitDate);
+                endDate.setDate(endDate.getDate() + 5);
+
+                const relevant = historicalData.filter(d => {
+                    const dObj = new Date(d.date);
+                    return dObj >= startDate && dObj <= endDate;
+                }).map(d => ({ x: d.date, y: d.close }));
+
+                if (relevant.length > 5) return relevant;
+            }
+
+            // 2. Fallback Mode: Simulation (Cubic Ease) if no data
             const start = trade.entry_price;
             const end = trade.exit_price;
             const points = 30;
