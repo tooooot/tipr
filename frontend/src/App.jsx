@@ -16,12 +16,15 @@ import NewsPage from './pages/NewsPage';
 import VerificationPage from './pages/VerificationPage';
 import DesignGallery from './pages/DesignGallery';
 import ActivityPage from './pages/ActivityPage';
+import HistoryPage from './pages/HistoryPage';
+import NotificationsPage from './pages/NotificationsPage';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Navigate to="/live" replace />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/bots" element={<BotsPage />} />
         <Route path="/bot/:botId" element={<BotProfile />} />
         <Route path="/trade/:tradeId" element={<TradeDetails />} />
@@ -34,8 +37,10 @@ function App() {
         <Route path="/live" element={<LivePage />} />
         <Route path="/news" element={<NewsPage />} />
         <Route path="/activity" element={<ActivityPage />} />
+        <Route path="/history" element={<HistoryPage />} />
+        <Route path="/notifications" element={<NotificationsPage />} />
+        <Route path="/designs" element={<DesignGallery />} />
         <Route path="/verification" element={<VerificationPage />} />
-        <Route path="/design-gallery" element={<DesignGallery />} />
 
         {/* Fallback routes */}
         <Route path="/settings" element={<MorePage />} />

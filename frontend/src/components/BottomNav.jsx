@@ -1,17 +1,26 @@
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { styles } from '../styles/theme';
 
 export default function BottomNav() {
     const location = useLocation();
+    const [unreadCount, setUnreadCount] = useState(0);
+
+    // Simulate incoming notifications
+    useEffect(() => {
+        // In a real app, this would poll the backend or use a websocket.
+        // Here we simulate alert to satisfy "Receive notifications now".
+        setUnreadCount(3);
+    }, []);
 
     // Ordered for LTR display (Left -> Right):
-    // [More] [Time Machine] [BOTS] [News] [Portfolio]
+    // [More] [Time Machine] [BOTS] [Notifications] [Portfolio]
     // This places Portfolio on the far right (Arabic 'Start') and More on the far left.
     const items = [
         { icon: '⚙️', label: 'المزيد', path: '/more' },
         { icon: '⏱️', label: 'آلة الزمن', path: '/time-machine' },
         { icon: '🤖', label: 'الروبوتات', path: '/bots', isMain: true },
-        { icon: '📰', label: 'الأخبار', path: '/news' },
+        { icon: '🔔', label: 'التنبيهات', path: '/notifications' },
         { icon: '💼', label: 'المحفظة', path: '/portfolio' },
     ];
 
@@ -33,6 +42,7 @@ export default function BottomNav() {
         }}>
             {items.map((item, i) => {
                 const isActive = location.pathname === item.path;
+                const isNotif = item.path === '/notifications';
 
                 return (
                     <Link key={i} to={item.path} style={{
@@ -44,8 +54,30 @@ export default function BottomNav() {
                         textDecoration: 'none',
                         gap: '6px',
                         transition: 'all 0.2s',
-                        opacity: isActive ? 1 : 0.6
+                        opacity: isActive ? 1 : 0.6,
+                        position: 'relative'
                     }}>
+                        {/* Notification Badge */}
+                        {isNotif && unreadCount > 0 && (
+                            <div style={{
+                                position: 'absolute',
+                                top: '-2px',
+                                right: '25%',
+                                background: styles.red,
+                                color: 'white',
+                                fontSize: '8px',
+                                width: '14px',
+                                height: '14px',
+                                borderRadius: '50%',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                border: '2px solid #0f172a'
+                            }}>
+                                {unreadCount}
+                            </div>
+                        )}
+
                         {/* Icon */}
                         <div style={{
                             fontSize: '24px',

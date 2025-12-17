@@ -20,39 +20,60 @@ app.add_middleware(
 
 # ============ Bot Configurations ============
 BOTS = [
-    {"id": "al_nami", "name_ar": "النامي", "name_en": "The Grower", "emoji": "📈", 
-     "strategy_ar": "استراتيجية النمو والاتجاه", "risk_level": "متوسط",
-     "description_ar": "يبحث عن الأسهم التي تخترق مقاومات مع حجم تداول عالي"},
-    {"id": "al_qannas", "name_ar": "القناص", "name_en": "The Sniper", "emoji": "🎯",
-     "strategy_ar": "التداول السريع على المدى القصير", "risk_level": "عالي",
-     "description_ar": "يستهدف الأسهم في منطقة تشبع بيعي للارتداد السريع"},
-    {"id": "al_jasour", "name_ar": "الجسور", "name_en": "The Bold", "emoji": "🦁",
-     "strategy_ar": "المخاطر العالية والعوائد الكبيرة", "risk_level": "عالي جداً",
-     "description_ar": "يدخل الأسهم المنخفضة بقوة رهاناً على الارتداد"},
-    {"id": "al_barq", "name_ar": "البرق", "name_en": "Lightning", "emoji": "⚡",
-     "strategy_ar": "اقتناص طفرات الحجم", "risk_level": "عالي جداً",
-     "description_ar": "يراقب طفرات الحجم غير العادية للدخول السريع"},
-    {"id": "al_basira", "name_ar": "البصيرة", "name_en": "The Seer", "emoji": "👁️",
-     "strategy_ar": "تحليل الأخبار والمشاعر", "risk_level": "متوسط",
-     "description_ar": "يحلل الأخبار ومشاعر السوق لاتخاذ القرارات"},
-    {"id": "al_razeen", "name_ar": "الرزين", "name_en": "The Steady", "emoji": "⚖️",
-     "strategy_ar": "الاستثمار في القيمة", "risk_level": "منخفض",
-     "description_ar": "يبحث عن الأسهم المقيّمة بأقل من قيمتها الحقيقية"},
-    {"id": "al_khabeer", "name_ar": "الخبير", "name_en": "The Expert", "emoji": "🧠",
-     "strategy_ar": "التحليل الفني الكلاسيكي", "risk_level": "متوسط",
-     "description_ar": "يستخدم التقاطعات الذهبية والمؤشرات الكلاسيكية"},
-    {"id": "al_rasi", "name_ar": "الراسي", "name_en": "The Anchor", "emoji": "🏔️",
-     "strategy_ar": "صائد التوزيعات", "risk_level": "منخفض",
-     "description_ar": "يستهدف الأسهم ذات التوزيعات العالية"},
-    {"id": "al_dhakheera", "name_ar": "الذخيرة", "name_en": "The Reserve", "emoji": "💰",
-     "strategy_ar": "الشراء المنتظم (DCA)", "risk_level": "منخفض جداً",
-     "description_ar": "يشتري بانتظام بغض النظر عن السعر"},
-    {"id": "al_mudarra", "name_ar": "المُدرّع", "name_en": "The Armored", "emoji": "🛡️",
-     "strategy_ar": "التحوط والتنويع", "risk_level": "منخفض",
-     "description_ar": "ينوع المحفظة عبر القطاعات للحماية"},
-    {"id": "al_maestro", "name_ar": "المايسترو", "name_en": "The Maestro", "emoji": "🐋",
-     "strategy_ar": "صيد الحيتان (Whale Strategy)", "risk_level": "عالي (هجومي)",
-     "description_ar": "يتبع سيولة الهوامير + تجميع هرمي لمضاعفة الأرباح"},
+    # --- Saudi Market 🇸🇦 ---
+    {"id": "al_maestro", "name_ar": "المايسترو", "name_en": "The Maestro", "emoji": "🤖", 
+     "strategy_ar": "ركوب الموجة (Trend Following)", "risk_level": "متوسط", "market": "saudi",
+     "description_ar": "هجين ذكي يوازن بين النمو والأمان"},
+    {"id": "al_qannas", "name_ar": "القناص", "name_en": "The Sniper", "emoji": "🦁", 
+     "strategy_ar": "الصيد في القاع (Mean Reversion)", "risk_level": "عالي", "market": "saudi",
+     "description_ar": "اقتناص الفرص السريعة والمضاربة اللحظية"},
+    {"id": "al_hout", "name_ar": "الحوت", "name_en": "The Whale", "emoji": "🐋", 
+     "strategy_ar": "تتبع السيولة الذكية (Smart Money)", "risk_level": "منخفض", "market": "saudi",
+     "description_ar": "تتبع السيولة الذكية وأوامر الهوامير"},
+    {"id": "sayyad_alfors", "name_ar": "صياد الفرص", "name_en": "Opportunity Hunter", "emoji": "🦅", 
+     "strategy_ar": "نماذج الشموع (Price Action)", "risk_level": "عالي", "market": "saudi",
+     "description_ar": "الدخول عند الارتداد من القيعان السعرية"},
+
+    # --- Global / US Market 🇺🇸 ---
+    {"id": "smart_investor", "name_ar": "المستثمر الذكي", "name_en": "Smart Investor", "emoji": "🧠", 
+     "strategy_ar": "النمو والقيمة (CAN SLIM)", "risk_level": "منخفض", "market": "all",
+     "description_ar": "التركيز على الشركات ذات النمو المستدام"},
+    {"id": "wave_breaker", "name_ar": "كاسر الأمواج", "name_en": "Wave Breaker", "emoji": "🌊", 
+     "strategy_ar": "اختراق المقاومة (Breakout)", "risk_level": "متوسط", "market": "all",
+     "description_ar": "الدخول مع اختراق نقاط المقاومة"},
+    {"id": "gap_hunter", "name_ar": "صائد الفجوات", "name_en": "Gap Hunter", "emoji": "🕳️", 
+     "strategy_ar": "إغلاق الفجوات (Gap Fill)", "risk_level": "عالي", "market": "all",
+     "description_ar": "الاستفادة من الفجوات السعرية عند الافتتاح"},
+    {"id": "momentum_tracker", "name_ar": "متتبع الزخم", "name_en": "Momentum Tracker", "emoji": "🚀", 
+     "strategy_ar": "قوة الزخم (Momentum)", "risk_level": "عالي", "market": "all",
+     "description_ar": "ركوب موجة الصعود القوي"},
+    {"id": "shield_keeper", "name_ar": "حارس المحفظة", "name_en": "Shield Keeper", "emoji": "🛡️", 
+     "strategy_ar": "الدفاعي (Low Beta)", "risk_level": "منخفض جداً", "market": "all",
+     "description_ar": "استراتيجية التحوط وتقليل المخاطر"},
+    {"id": "indicator_pro", "name_ar": "خبير المؤشرات", "name_en": "Indicator Pro", "emoji": "📊", 
+     "strategy_ar": "التوافق الفني (Confluence)", "risk_level": "متوسط", "market": "all",
+     "description_ar": "الاعتماد الكلي على التحليل الفني"},
+    {"id": "copy_cat", "name_ar": "الناسخ", "name_en": "Copy Cat", "emoji": "👥", 
+     "strategy_ar": "ذكاء الجمهور (Social Sentiment)", "risk_level": "عالي", "market": "all",
+     "description_ar": "نسخ صفقات المحافظ الأعلى أداءً تلقائياً"},
+     
+    {"id": "wall_street_wolf", "name_ar": "ذئب وول ستريت", "name_en": "Wall St Wolf", "emoji": "🐺", 
+     "strategy_ar": "النمو المتفجر (IPO & Tech)", "risk_level": "عالي جداً", "market": "us",
+     "description_ar": "اقتناص الأسهم الأكثر تداولاً وجدلاً"},
+    {"id": "tech_titan", "name_ar": "عملاق التقنية", "name_en": "Tech Titan", "emoji": "💻", 
+     "strategy_ar": "السبعة الكبار (Magnificent 7)", "risk_level": "متوسط", "market": "us",
+     "description_ar": "متخصص في قطاع التكنولوجيا والذكاء الاصطناعي"},
+    {"id": "dividend_king", "name_ar": "ملك التوزيعات", "name_en": "Dividend King", "emoji": "👑", 
+     "strategy_ar": "أرستقراطيي التوزيعات", "risk_level": "منخفض", "market": "us",
+     "description_ar": "بناء دخل سلبي من توزيعات الأرباح"},
+
+    # --- Crypto Market 🪙 ---
+    {"id": "crypto_king", "name_ar": "ملك الكريبتو", "name_en": "Crypto King", "emoji": "🤴", 
+     "strategy_ar": "الدورات الزمنية (Halving)", "risk_level": "عالي", "market": "crypto",
+     "description_ar": "استراتيجيات خاصة للأصول الرقمية والبيتكوين"},
+    {"id": "defi_wizard", "name_ar": "ساحر الـDeFi", "name_en": "DeFi Wizard", "emoji": "🧙‍♂️", 
+     "strategy_ar": "المضاربة الجنونية (Altcoins)", "risk_level": "عالي جداً", "market": "crypto",
+     "description_ar": "اكتشاف مشاريع التمويل اللامركزي المبكرة"},
 ]
 
 SAUDI_STOCKS = ["2222.SR", "1120.SR", "2010.SR", "1180.SR", "2380.SR", 

@@ -1,51 +1,99 @@
+
 import json
-from app.services.backtest_engine import BacktestEngine
-from app.main import SAUDI_STOCKS
+import os
 from datetime import datetime
+import pandas as pd
 
-def analyze_market_potential():
-    print("🕵️‍♂️ جاري تحليل الفرص الضائعة في البيانات...")
+# Load Trades
+base_path = os.path.dirname(os.path.abspath(__file__))
+trades_path = os.path.join(base_path, '../frontend/src/data/real_trades.json')
+output_path = os.path.join(base_path, '../frontend/src/data/history_events.json')
+
+with open(trades_path, 'r', encoding='utf-8') as f:
+    trades_data = json.load(f)
+
+# Convert to DataFrame
+df = pd.DataFrame(trades_data)
+df['entry_date'] = pd.to_datetime(df['entry_date'])
+df['exit_date'] = pd.to_datetime(df['exit_date'], errors='coerce')
+df['month_year'] = df['entry_date'].dt.to_period('M')
+
+# 1. GENERATE WEEKLY AWARDS
+# Group by Year-Week
+df['week_year'] = df['entry_date'].dt.strftime('%Y-%U') 
+
+weekly_awards = []
+periods = df['week_year'].unique()
+periods = sorted(periods)
+
+for p in periods:
+    # Filter for this week
+    weekly_df = df[df['week_year'] == p]
+    if weekly_df.empty: continue
     
-    # تهيئة المحرك لجلب البيانات
-    engine = BacktestEngine(start_date="2023-01-01", initial_capital=100000)
+    # Group by Bot
+    bot_stats = weekly_df.groupby('bot_id')['profit_pct'].sum().reset_index()
+    if bot_stats.empty: continue
     
-    print(f"📊 عدد الأسهم التي تم تحميل بياناتها: {len(engine.price_data)}")
+    # Find Winner
+    winner = bot_stats.loc[bot_stats['profit_pct'].idxmax()]
     
-    best_stocks = []
-    
-    for symbol, data in engine.price_data.items():
-        if not data: continue
+    # Only award if profit is positive and substantial (> 1%)
+    if winner['profit_pct'] > 1.0:
+        # Get start date of the week for display
+        week_start = weekly_df['entry_date'].min().strftime('%d/%m')
+        week_end = weekly_df['entry_date'].max().strftime('%d/%m')
         
-        first_price = data[0]["close"]
-        highest_price = max(d["high"] for d in data)
-        lowest_price = min(d["low"] for d in data)
-        last_price = data[-1]["close"]
-        
-        # أقصى ربح ممكن (من القاع للقمة)
-        max_potential_gain = ((highest_price - lowest_price) / lowest_price) * 100
-        
-        # ربح الاستثمار (من البداية للنهاية)
-        buy_hold_gain = ((last_price - first_price) / first_price) * 100
-        
-        best_stocks.append({
-            "symbol": symbol,
-            "max_potential": max_potential_gain,
-            "buy_hold": buy_hold_gain,
-            "period_days": len(data)
+        weekly_awards.append({
+            "type": "AWARD",
+            "date": weekly_df['entry_date'].max().strftime('%Y-%m-%d'), # Award at end of week
+            "title_ar": f"نجم الأسبوع ({week_start} - {week_end})",
+            "bot_id": winner['bot_id'],
+            "profit": round(winner['profit_pct'], 2),
+            "description_ar": f"حقق الروبوت {winner['bot_id']} صدارة الأسبوع بعائد ممتاز."
         })
-    
-    # ترتيب الأسهم حسب الفرصة
-    best_stocks.sort(key=lambda x: x["max_potential"], reverse=True)
-    
-    print("\n💎 **أكبر الفرص الموجودة في بياناتك:**")
-    print(f"{'السهم':<10} | {'التدبيلة الممكنة (Max)':<20} | {'ربح الاحتفاظ (Hold)':<20}")
-    print("-" * 60)
-    
-    for stock in best_stocks:
-        symbol = stock['symbol']
-        max_pot = f"{stock['max_potential']:.1f}%"
-        hold = f"{stock['buy_hold']:.1f}%"
-        print(f"{symbol:<10} | {max_pot:<20} | {hold:<20}")
 
-if __name__ == "__main__":
-    analyze_market_potential()
+# 2. GENERATE LEGENDARY TRADES (Top 10 All Time)
+legendary_trades = []
+top_trades = df.nlargest(10, 'profit_pct')
+
+for _, trade in top_trades.iterrows():
+    legendary_trades.append({
+        "type": "LEGENDARY_TRADE",
+        "date": trade['entry_date'].strftime('%Y-%m-%d'),
+        "symbol": trade['symbol'],
+        "bot_id": trade['bot_id'],
+        "profit": trade['profit_pct'],
+        "description_ar": "صفقة أسطورية كسرت التوقعات!"
+    })
+
+# 3. GENERATE PORTFOLIO MILESTONES (Simulation of a user who invested 100k)
+# We calculate a cumulative return timeline
+df_sorted = df.sort_values('exit_date')
+portfolio_milestones = []
+current_equity = 100000
+milestone_step = 20000 # Record every 20k profit
+
+for _, trade in df_sorted.iterrows():
+    if pd.isna(trade['exit_date']): continue
+    
+    # Assume 10% allocation per trade
+    trade_profit_val = (10000 * (trade['profit_pct'] / 100))
+    current_equity += trade_profit_val
+    
+    # Check milestone
+    if current_equity > 100000 and (current_equity % milestone_step) < 5000: # Rough trigger
+         # To avoid spamming, only add if not recently added (simplified logic here)
+         pass
+
+# Save Results
+final_output = {
+    "awards": weekly_awards,
+    "legendary_trades": legendary_trades,
+    "generated_at": datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+}
+
+with open(output_path, 'w', encoding='utf-8') as f:
+    json.dump(final_output, f, ensure_ascii=False, indent=4)
+
+print(f"✅ Generated history events: {len(weekly_awards)} awards, {len(legendary_trades)} legendary trades.")

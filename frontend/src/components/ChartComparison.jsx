@@ -3,8 +3,14 @@ import React, { useState, useEffect } from 'react';
 import Chart from 'react-apexcharts';
 import { styles, btnGold } from '../styles/theme';
 
+// Consistent Random Generator
+const seededRandom = (s) => {
+    const x = Math.sin(s) * 10000;
+    return x - Math.floor(x);
+};
+
 // Generate Mock Price Data that RESPECTS the trade outcome
-const generateSmartData = (basePrice, isWin, volatility = 0.02) => {
+const generateSmartData = (basePrice, isWin, symbol, volatility = 0.02) => {
     let prices = [];
     let date = new Date();
     date.setDate(date.getDate() - 60);
@@ -13,9 +19,13 @@ const generateSmartData = (basePrice, isWin, volatility = 0.02) => {
     // Trend Control: If Win -> Trend Up, If Loss -> Trend Down
     let trendBias = isWin ? 0.002 : -0.002;
 
+    // Create a base seed from symbol
+    let seed = symbol ? symbol.split('').reduce((acc, c) => acc + c.charCodeAt(0), 0) : 12345;
+
     for (let i = 0; i < 90; i++) {
-        // Random walk with Bias
-        let change = (Math.random() - 0.5 + (trendBias * 10)) * (currentPrice * volatility);
+        seed++;
+        // Random walk with Bias using seededRandom
+        let change = (seededRandom(seed) - 0.5 + (trendBias * 10)) * (currentPrice * volatility);
         currentPrice += change;
 
         // Safety: Don't let price go to zero
@@ -31,7 +41,7 @@ const generateSmartData = (basePrice, isWin, volatility = 0.02) => {
 };
 
 // updated signature to accept isWin explicitly
-export default function ChartComparison({ symbol, entryDate, exitDate, entryPrice, exitPrice, stopLoss, takeProfit, isWin: isWinProp }) {
+export default function ChartComparison({ symbol, entryDate, exitDate, entryPrice, exitPrice, stopLoss, takeProfit, isWin: isWinProp, viewMode = 'both' }) {
     const [chartSeries, setChartSeries] = useState([]);
     const [chartData, setChartData] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -52,7 +62,7 @@ export default function ChartComparison({ symbol, entryDate, exitDate, entryPric
 
     useEffect(() => {
         // Generate data that MATCHES the outcome (Smart Generator)
-        const data = generateSmartData(validEntry, isWin);
+        const data = generateSmartData(validEntry, isWin, symbol);
 
         // HACK: Force the END data points to align visually with the Exit Price
         if (validExit) {
@@ -142,28 +152,36 @@ export default function ChartComparison({ symbol, entryDate, exitDate, entryPric
 
     return (
         <div>
-            <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
-                <button onClick={takeScreenshot} style={{ ...btnGold, padding: '8px 16px', fontSize: '12px', background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)' }}>
-                    📸 حفظ بطاقة الصفقة
-                </button>
-            </div>
+            {viewMode === 'both' && (
+                <div style={{ display: 'flex', gap: '8px', marginBottom: '16px', flexWrap: 'wrap' }}>
+                    <button onClick={takeScreenshot} style={{ ...btnGold, padding: '8px 16px', fontSize: '12px', background: 'linear-gradient(135deg, #8b5cf6, #6d28d9)' }}>
+                        📸 حفظ بطاقة الصفقة
+                    </button>
+                </div>
+            )}
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-                <div style={{ ...styles.card, padding: '20px', background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)' }}>
-                    <div style={{ marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
-                        <h4 style={{ color: styles.gold, fontSize: '16px', marginBottom: '4px' }}>📐 خطة الروبوت</h4>
+                {(viewMode === 'both' || viewMode === 'plan') && (
+                    <div style={{ ...styles.card, padding: '20px', background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)' }}>
+                        <div style={{ marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
+                            <h4 style={{ color: styles.gold, fontSize: '16px', marginBottom: '4px' }}>📐 خطة الروبوت (Setup)</h4>
+                            <p style={{ fontSize: '12px', color: '#94a3b8' }}>تحليل فرص الدخول والمستويات المستهدفة</p>
+                        </div>
+                        <Chart options={planOptions} series={chartSeries} type="area" height={300} />
                     </div>
-                    <Chart options={planOptions} series={chartSeries} type="area" height={300} />
-                </div>
+                )}
 
-                <div style={{ ...styles.card, padding: '20px', background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)', border: isWin ? `2px solid ${styles.green}` : `2px solid ${styles.red}` }}>
-                    <div style={{ marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
-                        <h4 style={{ color: isWin ? styles.green : styles.red, fontSize: '16px', marginBottom: '4px' }}>
-                            {isWin ? '🏆 النتيجة النهائية: نجاح' : '🔻 النتيجة النهائية: خسارة'}
-                        </h4>
+                {(viewMode === 'both' || viewMode === 'result') && (
+                    <div style={{ ...styles.card, padding: '20px', background: 'linear-gradient(180deg, #1e293b 0%, #0f172a 100%)', border: isWin ? `2px solid ${styles.green}` : `2px solid ${styles.red}` }}>
+                        <div style={{ marginBottom: '16px', borderBottom: '1px solid #334155', paddingBottom: '12px' }}>
+                            <h4 style={{ color: isWin ? styles.green : styles.red, fontSize: '16px', marginBottom: '4px' }}>
+                                {isWin ? '🏆 النتيجة النهائية: نجاح' : '🔻 النتيجة النهائية: خسارة'}
+                            </h4>
+                            <p style={{ fontSize: '12px', color: '#94a3b8' }}>مسار الصفقة الفعلي ونقاط الخروج</p>
+                        </div>
+                        <Chart options={resultOptions} series={chartSeries} type="area" height={300} />
                     </div>
-                    <Chart options={resultOptions} series={chartSeries} type="area" height={300} />
-                </div>
+                )}
             </div>
         </div>
     );

@@ -7,21 +7,25 @@ import { styles } from '../styles/theme';
 import BottomNav from '../components/BottomNav';
 
 const DEFAULT_BOTS = [
-    // --- Saudi Market 🇸🇦 ---
-    { id: 'al_maestro', name_ar: 'المايسترو', emoji: '🤖', market: 'saudi', description: 'روبوت متوازن يركز على الأسهم القيادية وذات العوائد.', risk_level: 'متوسط', strategy_ar: 'نمو متوازن' },
-    { id: 'al_qannas', name_ar: 'القناص', emoji: '🦁', market: 'saudi', description: 'يبحث عن الفرص السريعة والمضاربة اليومية.', risk_level: 'عالي', strategy_ar: 'مضاربة سريعة' },
-    { id: 'al_hout', name_ar: 'الحوت', emoji: '🐋', market: 'saudi', description: 'يركز على السيولة العالية وتجميع الأسهم.', risk_level: 'منخفض', strategy_ar: 'تجميع' },
-    { id: 'sayyad_alfors', name_ar: 'صياد الفرص', emoji: '🦅', market: 'saudi', description: 'اقتناص الأسهم المرتدة من القيعان.', risk_level: 'عالي', strategy_ar: 'ارتداد' },
+    // --- Universal Strategies (Originally Saudi 🇸🇦) ---
+    { id: 'al_maestro', name_ar: 'المايسترو', emoji: '🤖', market: 'all', description: 'الاستراتيجية الهجينة الذكية: توازن بين النمو والأمان.', risk_level: 'متوسط', strategy_ar: 'هجين ذكي' },
+    { id: 'al_qannas', name_ar: 'القناص', emoji: '🦁', market: 'all', description: 'اقتناص الفرص السريعة والمضاربة اللحظية.', risk_level: 'عالي', strategy_ar: 'مضاربة سريعة' },
+    { id: 'al_hout', name_ar: 'الحوت', emoji: '🐋', market: 'all', description: 'تتبع السيولة الذكية وأوامر الهوامير.', risk_level: 'منخفض', strategy_ar: 'تتبع السيولة' },
+    { id: 'sayyad_alfors', name_ar: 'صياد الفرص', emoji: '🦅', market: 'all', description: 'الدخول عند الارتداد من القيعان السعرية.', risk_level: 'عالي', strategy_ar: 'ارتداد (Reversal)' },
+    { id: 'smart_investor', name_ar: 'المستثمر الذكي', emoji: '🧠', market: 'all', description: 'التركيز على الشركات ذات النمو المستدام والعوائد.', risk_level: 'منخفض', strategy_ar: 'استثمار قيمة' },
+    { id: 'wave_breaker', name_ar: 'كاسر الأمواج', emoji: '🌊', market: 'all', description: 'الدخول مع اختراق نقاط المقاومة (Breakout).', risk_level: 'متوسط', strategy_ar: 'اختراق (Breakout)' },
+    { id: 'gap_hunter', name_ar: 'صائد الفجوات', emoji: '🕳️', market: 'all', description: 'الاستفادة من الفجوات السعرية عند الافتتاح.', risk_level: 'عالي', strategy_ar: 'فجوات (Gaps)' },
+    { id: 'momentum_tracker', name_ar: 'متتبع الزخم', emoji: '🚀', market: 'all', description: 'ركوب موجة الصعود القوي (Momentum).', risk_level: 'عالي', strategy_ar: 'زخم (Momentum)' },
+    { id: 'shield_keeper', name_ar: 'حارس المحفظة', emoji: '🛡️', market: 'all', description: 'استراتيجية التحوط وتقليل المخاطر (DCA).', risk_level: 'منخفض جداً', strategy_ar: 'تحوط (Hedging)' },
+    { id: 'indicator_pro', name_ar: 'خبير المؤشرات', emoji: '📊', market: 'all', description: 'الاعتماد الكلي على التحليل الفني (RSI, MACD, MA).', risk_level: 'متوسط', strategy_ar: 'تحليل فني' },
+    { id: 'copy_cat', name_ar: 'الناسخ', emoji: '👥', market: 'all', description: 'نسخ صفقات المحافظ الأعلى أداءً تلقائياً.', risk_level: 'عالي', strategy_ar: 'نسخ (Social)' },
 
-    // --- US Market 🇺🇸 ---
-    { id: 'wall_street_wolf', name_ar: 'ذئب وول ستريت', emoji: '🐺', market: 'us', description: 'تركيز على أسهم التكنولوجيا والنمو السريع.', risk_level: 'عالي', strategy_ar: 'نمو جسور' },
-    { id: 'tech_titan', name_ar: 'عملاق التقنية', emoji: '💻', market: 'us', description: 'يستثمر حصرياً في العمالقة السبعة (Magnificent Seven).', risk_level: 'متوسط', strategy_ar: 'استثمار تقني' },
-    { id: 'dividend_king', name_ar: 'ملك التوزيعات', emoji: '👑', market: 'us', description: 'أسهم الأرستقراطيين التي توزع أرباحاً متزايدة.', risk_level: 'منخفض', strategy_ar: 'دخل سلبي' },
-
-    // --- Crypto Market 🪙 ---
-    { id: 'crypto_king', name_ar: 'ملك الكريبتو', emoji: '🤴', market: 'crypto', description: 'تداول البيتكوين والإيثيريوم فقط.', risk_level: 'متوسط', strategy_ar: 'Trend Following' },
-    { id: 'altcoin_hunter', name_ar: 'صياد العملات', emoji: '🚀', market: 'crypto', description: 'البحث عن الجواهر الخفية والعملات البديلة.', risk_level: 'عالي جداً', strategy_ar: 'High Risk' },
-    { id: 'defi_wizard', name_ar: 'saher_defi', emoji: '🧙‍♂️', market: 'crypto', description: 'الاستفادة من تحركات التمويل اللامركزي.', risk_level: 'عالي', strategy_ar: 'DeFi Omni' },
+    // --- Global Strategies (Originally US/Crypto 🇺🇸 🪙) ---
+    { id: 'wall_street_wolf', name_ar: 'ذئب وول ستريت', emoji: '🐺', market: 'all', description: 'اقتناص الأسهم الأكثر تداولاً وجدلاً.', risk_level: 'عالي جداً', strategy_ar: 'Trend Following' },
+    { id: 'tech_titan', name_ar: 'عملاق التقنية', emoji: '💻', market: 'all', description: 'متخصص في قطاع التكنولوجيا والذكاء الاصطناعي.', risk_level: 'متوسط', strategy_ar: 'قطاعي (Sector)' },
+    { id: 'dividend_king', name_ar: 'ملك التوزيعات', emoji: '👑', market: 'all', description: 'بناء دخل سلبي من توزيعات الأرباح.', risk_level: 'منخفض', strategy_ar: 'دخل (Income)' },
+    { id: 'crypto_king', name_ar: 'ملك الكريبتو', emoji: '🤴', market: 'all', description: 'استراتيجيات خاصة للأصول الرقمية والبيتكوين.', risk_level: 'عالي', strategy_ar: 'أصول رقمية' },
+    { id: 'defi_wizard', name_ar: 'ساحر الـDeFi', emoji: '🧙‍♂️', market: 'all', description: 'اكتشاف مشاريع التمويل اللامركزي المبكرة.', risk_level: 'عالي جداً', strategy_ar: 'DeFi Alpha' },
 ];
 
 export default function BotsPage() {
@@ -43,23 +47,23 @@ export default function BotsPage() {
     }, []);
 
     // Filter Logic
-    const filteredBots = bots.filter(bot => {
-        if (filter === 'all') return true;
-        // Check both explicit market field and inferred logic for backward compatibility
-        const m = bot.market || (['al_maestro', 'al_qannas', 'al_hout', 'sayyad_alfors'].includes(bot.id) ? 'saudi' : 'us');
-        return m === filter;
-    });
+    // Filter Logic: Show All Bots for now (Universal Concept), 
+    // unless user wants to simulate filtering by origin (optional). 
+    // For universal bots, we show everything.
+    const filteredBots = bots;
 
     const getMarketInfo = (bot) => {
-        // Determine market details based on bot ID or market field
-        let market = { flag: '🇸🇦', currency: 'ر.س', label: 'السوق السعودي' };
+        // If filter is 'all', default to Saudi or Bot's origin.
+        // If filter is specific (e.g. 'us'), show that market's info for the bot.
 
-        if (bot.market === 'us' || ['wall_street_wolf', 'tech_titan', 'dividend_king'].includes(bot.id)) {
-            market = { flag: '🇺🇸', currency: '$', label: 'السوق الأمريكي' };
-        } else if (bot.market === 'crypto' || ['crypto_king', 'altcoin_hunter', 'defi_wizard'].includes(bot.id)) {
-            market = { flag: '🪙', currency: 'USDT', label: 'سوق الكريبتو' };
-        }
-        return market;
+        let targetMarket = filter === 'all' ? 'saudi' : filter;
+
+        // Specific overrides if needed, but for now we follow the filter
+        if (targetMarket === 'us') return { flag: '🇺🇸', currency: '$', label: 'السوق الأمريكي' };
+        if (targetMarket === 'crypto') return { flag: '🪙', currency: 'USDT', label: 'سوق الكريبتو' };
+
+        // Default
+        return { flag: '🇸🇦', currency: 'ر.س', label: 'السوق السعودي' };
     };
 
     return (
@@ -103,7 +107,12 @@ export default function BotsPage() {
                     </div>
 
                     {/* Bots List */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+                    {/* Bots List (Compact Grid) */}
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: '1fr 1fr',
+                        gap: '12px'
+                    }}>
                         {filteredBots.map(bot => {
                             const data = getBotData(bot.id);
                             const marketInfo = getMarketInfo(bot);
@@ -116,79 +125,61 @@ export default function BotsPage() {
                                     onClick={() => navigate(`/bot/${bot.id}`)}
                                     style={{
                                         background: '#1e293b',
-                                        borderRadius: '24px',
+                                        borderRadius: '16px',
                                         cursor: 'pointer',
                                         position: 'relative',
                                         overflow: 'hidden',
-                                        boxShadow: '0 4px 15px rgba(0,0,0,0.3)',
-                                        border: '1px solid #334155'
+                                        border: '1px solid #334155',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        height: '100%'
                                     }}
                                 >
-                                    {/* Header Section: Big Emoji + Name */}
+                                    {/* Compact Header */}
                                     <div style={{
-                                        padding: '24px',
+                                        padding: '16px',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         alignItems: 'center',
                                         textAlign: 'center',
-                                        background: 'linear-gradient(180deg, rgba(51, 65, 85, 0.5) 0%, rgba(30, 41, 59, 1) 100%)',
-                                        borderBottom: '1px solid #334155'
+                                        flex: 2,
+                                        background: 'linear-gradient(180deg, rgba(51, 65, 85, 0.3) 0%, rgba(30, 41, 59, 0) 100%)'
                                     }}>
-                                        <div style={{
-                                            fontSize: '80px',
-                                            marginBottom: '10px',
-                                            filter: 'drop-shadow(0 0 10px rgba(0,0,0,0.2))'
-                                        }}>
+                                        <div style={{ fontSize: '42px', marginBottom: '8px', filter: 'drop-shadow(0 4px 6px rgba(0,0,0,0.2))' }}>
                                             {bot.emoji}
                                         </div>
-                                        <h2 style={{
-                                            color: 'white',
-                                            fontSize: '28px',
-                                            fontWeight: '900',
-                                            margin: '0 0 8px 0',
-                                            fontFamily: 'Cairo, sans-serif'
-                                        }}>
+                                        <h2 style={{ color: 'white', fontSize: '16px', fontWeight: 'bold', margin: '0 0 4px 0', lineHeight: '1.2' }}>
                                             {bot.name_ar}
                                         </h2>
-                                        <p style={{
-                                            color: styles.gray,
-                                            fontSize: '16px',
-                                            margin: 0,
-                                            lineHeight: '1.5'
-                                        }}>
+                                        <p style={{ color: styles.gray, fontSize: '10px', margin: 0, overflow: 'hidden', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical' }}>
                                             {bot.description}
                                         </p>
                                     </div>
 
-                                    {/* Stats Section */}
-                                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px', alignItems: 'center' }}>
-                                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                                            <span style={{ fontSize: '32px' }}>{marketInfo.flag}</span>
-                                            <div>
-                                                <p style={{ color: styles.gray, fontSize: '12px' }}>السوق</p>
-                                                <p style={{ color: 'white', fontWeight: 'bold', fontSize: '16px' }}>{marketInfo.label}</p>
-                                            </div>
-                                        </div>
-
-                                        <div style={{ textAlign: 'left' }}>
-                                            <p style={{ color: styles.gray, fontSize: '12px' }}>العائد الكلي</p>
-                                            <p style={{
-                                                color: isPositive ? styles.green : styles.red,
-                                                fontSize: '32px',
-                                                fontWeight: '900',
-                                                margin: 0,
-                                                direction: 'ltr',
-                                                fontFamily: 'monospace'
-                                            }}>
-                                                {isPositive ? '+' : ''}{profit}%
-                                            </p>
-                                        </div>
+                                    {/* Compact Stats */}
+                                    <div style={{
+                                        padding: '12px',
+                                        borderTop: '1px solid #334155',
+                                        background: 'rgba(15, 23, 42, 0.5)',
+                                        display: 'flex',
+                                        justifyContent: 'space-between',
+                                        alignItems: 'center'
+                                    }}>
+                                        <span style={{ fontSize: '18px' }}>{marketInfo.flag}</span>
+                                        <span style={{
+                                            color: isPositive ? styles.green : styles.red,
+                                            fontSize: '16px',
+                                            fontWeight: 'bold',
+                                            direction: 'ltr',
+                                            fontFamily: 'monospace'
+                                        }}>
+                                            {isPositive ? '+' : ''}{profit}%
+                                        </span>
                                     </div>
-
                                 </div>
                             );
                         })}
-                    </div >
+                    </div>
 
                     {/* Zero State */}
                     {

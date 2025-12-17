@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { fetchAPI } from '../api/api';
 import { getBotData, getSimulation } from '../utils/storage';
+import realTradesData from '../data/real_trades.json';
 import { styles, btnGold } from '../styles/theme';
 import BottomNav from '../components/BottomNav';
 
@@ -11,16 +12,27 @@ export default function PortfolioPage() {
     const [activeTab, setActiveTab] = useState('saudi'); // saudi, us, crypto
     const [bots, setBots] = useState([]);
 
-    // محاكاة لأرصدة المحافظ (رصيد ابتدائي 100 ألف لكل سوق)
+    // محاكاة لأرصدة المحافظ (قيمة كل محفظة = 100 ألف ريال تقريباً)
     const [wallets, setWallets] = useState({
         saudi: { balance: 100000, currency: 'SAR', label: 'الأسهم السعودية', flag: '🇸🇦' },
-        us: { balance: 100000, currency: 'USD', label: 'السوق الأمريكي', flag: '🇺🇸' },
-        crypto: { balance: 100000, currency: 'USDT', label: 'العملات الرقمية', flag: '🪙' }
+        us: { balance: 26666, currency: 'USD', label: 'السوق الأمريكي', flag: '🇺🇸' }, // ~100k SAR
+        crypto: { balance: 26666, currency: 'USDT', label: 'العملات الرقمية', flag: '🪙' } // ~100k SAR
     });
 
     const [copiedBots, setCopiedBots] = useState(() => {
         try {
-            return JSON.parse(localStorage.getItem('copied_bots')) || [];
+            const stored = JSON.parse(localStorage.getItem('copied_bots')) || [];
+            // Normalize old string format to new object format
+            return stored.map(item => {
+                if (typeof item === 'string') {
+                    // Legacy support: Determine default market
+                    const defaultMarket = getBotMarket(item);
+                    // If 'all', default to all 3. If specific, just that one.
+                    const markets = defaultMarket === 'all' ? ['saudi', 'us', 'crypto'] : [defaultMarket];
+                    return { id: item, markets };
+                }
+                return item;
+            });
         } catch { return []; }
     });
 
@@ -28,37 +40,48 @@ export default function PortfolioPage() {
         // Fetch valid bot list
         fetchAPI('/api/bots').then(r => {
             if (r?.data && r.data.length > 0) {
-                // Assuming logic to link copied bots to real data would happen here
-                // For now, we trust storage
+                setBots(r.data);
             }
         });
     }, []);
 
-    // Helper: Determine Bot's Market
+    // Helper: Determine Bot's DEFAULT Strategy Market
     const getBotMarket = (botId) => {
+        // Saudi Market Bots
         if (['al_maestro', 'al_qannas', 'al_hout', 'sayyad_alfors'].includes(botId)) return 'saudi';
+
+        // Pure US Market Bots
         if (['wall_street_wolf', 'tech_titan', 'dividend_king'].includes(botId)) return 'us';
+
+        // Crypto Market Bots
         if (['crypto_king', 'altcoin_hunter', 'defi_wizard'].includes(botId)) return 'crypto';
-        return 'saudi'; // Default
+
+        // Global/All Markets (Smart Investor, Wave Breaker, etc.)
+        // These will appear in ALL tabs
+        return 'all';
     };
 
-    // Calculate Dynamic Equity:
-    // Base 100k + Profit from active bots (Simplified simulation)
+    // Calculate Dynamic Equity
     const calculateMarketEquity = (marketKey) => {
-        // Find bots in this market
-        const marketBots = copiedBots.filter(id => getBotMarket(id) === marketKey);
-        let totalProfit = 0;
+        // Use the configured balance for this market (e.g. 100k or 26k)
+        const currentWallet = wallets[marketKey] || { balance: 100000 };
+        const INITIAL_CAPITAL = currentWallet.balance;
 
-        marketBots.forEach(botId => {
-            const data = getBotData(botId);
-            if (data?.total_profit_pct) {
-                // Assume allocated 20% of capital per bot
-                const allocation = 20000;
-                totalProfit += allocation * (data.total_profit_pct / 100);
-            }
+        // Find bots ACTIVE in this market based on USER selection
+        const marketBots = copiedBots.filter(bot => bot.markets && bot.markets.includes(marketKey));
+        let totalProfitValue = 0;
+
+        marketBots.forEach(userBot => {
+            // FIX: Use Real Engine Data
+            const botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === userBot.id) : [];
+            const totalBotProfitPct = botTrades.reduce((sum, t) => sum + (t.profit_pct || 0), 0);
+
+            // Assume allocated 20% of capital per bot
+            const allocation = INITIAL_CAPITAL * 0.20;
+            totalProfitValue += allocation * (totalBotProfitPct / 100);
         });
 
-        return wallets[marketKey].balance + totalProfit;
+        return INITIAL_CAPITAL + totalProfitValue;
     };
 
     // Total Net Worth Calculator (Converted to SAR for display)
@@ -103,7 +126,9 @@ export default function PortfolioPage() {
                         </h1>
                         <div style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', background: 'rgba(34, 197, 94, 0.1)', padding: '4px 12px', borderRadius: '20px', marginTop: '12px' }}>
                             <span style={{ fontSize: '12px' }}>🚀</span>
-                            <span style={{ color: styles.green, ...numberStyle }}>+4.2%</span>
+                            <span style={{ color: totalNetWorthSAR >= 300000 ? styles.green : styles.red, ...numberStyle }}>
+                                {((totalNetWorthSAR - 300000) / 300000 * 100).toFixed(2)}%
+                            </span>
                         </div>
                     </div>
 
@@ -183,7 +208,7 @@ export default function PortfolioPage() {
                         </button>
                     </div>
 
-                    {copiedBots.filter(id => getBotMarket(id) === activeTab).length === 0 ? (
+                    {copiedBots.filter(bot => bot.markets.includes(activeTab)).length === 0 ? (
                         <div style={{
                             border: '2px dashed #334155',
                             borderRadius: '12px',
@@ -211,14 +236,14 @@ export default function PortfolioPage() {
                     ) : (
                         <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                             {copiedBots
-                                .filter(id => getBotMarket(id) === activeTab)
-                                .map(botId => {
-                                    const bot = bots.find(b => b.id === botId);
-                                    const data = getBotData(botId);
+                                .filter(bot => bot.markets.includes(activeTab))
+                                .map(userBot => {
+                                    const bot = bots.find(b => b.id === userBot.id);
+                                    const data = getBotData(userBot.id);
                                     if (!bot) return null; // Loading or error
 
                                     return (
-                                        <div key={botId} style={{ ...styles.card, padding: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                                        <div key={userBot.id} style={{ ...styles.card, padding: '16px', display: 'flex', alignItems: 'center', gap: '12px' }}>
                                             <div style={{
                                                 width: '48px', height: '48px',
                                                 background: '#334155', borderRadius: '12px',
@@ -228,10 +253,10 @@ export default function PortfolioPage() {
                                                 {bot.emoji || '🤖'}
                                             </div>
                                             <div style={{ flex: 1 }}>
-                                                <p style={{ fontWeight: 'bold' }}>{bot.name_ar || botId}</p>
+                                                <p style={{ fontWeight: 'bold' }}>{bot.name_ar || userBot.id}</p>
                                                 <div style={{ display: 'flex', gap: '8px', marginTop: '4px' }}>
                                                     <span style={{ fontSize: '10px', color: styles.green, background: 'rgba(34,197,94,0.1)', padding: '2px 6px', borderRadius: '4px' }}>نشط ✅</span>
-                                                    <span style={{ fontSize: '10px', color: styles.gray }}>مخصص: 10,000</span>
+                                                    <span style={{ fontSize: '10px', color: styles.gray }}>مخصص: 20,000</span>
                                                 </div>
                                             </div>
                                             <div style={{ textAlign: 'left' }}>

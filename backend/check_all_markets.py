@@ -1,6 +1,32 @@
 import requests
 import json
 import time
+import random
+import os
+
+# Notification Templates (The Hook)
+NOTIFICATIONS_TEMPLATES = {
+    'BUY': [
+        "🤖 {bot}: رصدتُ حركة غير طبيعية في {symbol} 💎. اضغط للتفاصيل.",
+        "🦁 {bot}: هل أنت جاهز؟ فرصة اختراق محتملة في {symbol} 🚀",
+        "🦅 {bot}: {symbol} وصل لمنطقة اقتناص تاريخية! 🎯",
+        "🐋 {bot}: السيولة الذكية بدأت تدخل {symbol}.. هل نلحق بهم؟"
+    ],
+    'WIN': [
+        "💰 صوت النقود! صفقة {symbol} حققت الهدف {profit}% 🎯",
+        "🚀 {bot}: {symbol} يطير كما توقعنا! (+{profit}%)",
+        "🏆 مبروك! إغلاق صفقة {symbol} بربح ممتاز."
+    ],
+    'LOSS': [
+        "🛡️ تنبيه حارس المحفظة: تفعيل وقف الخسارة في {symbol} لحماية رأس المال.",
+        "⚠️ {bot}: الخروج من {symbol} أأمن الآن. تعلم من الدرس 🎓"
+    ]
+}
+
+def generate_notification(bot_name, symbol, type, profit=0):
+    templates = NOTIFICATIONS_TEMPLATES.get(type, NOTIFICATIONS_TEMPLATES['BUY'])
+    template = random.choice(templates)
+    return template.format(bot=bot_name, symbol=symbol, profit=profit)
 
 def run_multi_market_simulation():
     markets = [
@@ -9,68 +35,56 @@ def run_multi_market_simulation():
         {"id": "crypto", "name": "🪙 سوق الكريبتو"}
     ]
     
-    leaderboard = []
+    notifications = []
     
-    print("🌍 بدء بطولة الأسواق العالمية...\n")
+    print("🌍 بدء فحص الأسواق لتوليد التوصيات...\n")
     
     for market in markets:
-        print(f"⏳ جاري تشغيل المحاكاة لـ {market['name']}...")
+        print(f"⏳ جاري البحث في {market['name']}...")
         
-        try:
-            # استدعاء API لكل سوق
-            response = requests.post(
-                "http://localhost:8000/api/backtest/run", 
-                params={"start_date": "2024-01-01", "market": market["id"]}, # params for query
-                timeout=180
-            )
-            
-            if response.status_code == 200:
-                data = response.json()
-                bots = data.get("leaderboard", [])
-                if not bots:
-                    print(f"DEBUG: Empty leaderboard. Response data: {data}")
-                else:
-                    print(f"DEBUG: Bots found: {[b.get('bot_id') for b in bots]}")
-                
-                # البحث عن المايسترو
-                maestro = next((bot for bot in bots if bot["bot_id"] == "al_maestro"), None)
-                
-                if maestro:
-                    print(f"✅ تم الانتهاء. النتيجة: {maestro['total_profit_pct']}%")
-                    leaderboard.append({
-                        "market_name": market["name"],
-                        "bot_name": maestro["name_ar"],
-                        "profit": maestro["total_profit_pct"],
-                        "balance": maestro["final_balance"],
-                        "trades": maestro["total_trades"],
-                        "win_rate": maestro["win_rate"]
-                    })
-                else:
-                    print(f"⚠️ المايسترو لم يشارك في {market['name']}")
-            else:
-                print(f"❌ خطأ في السيرفر: {response.status_code} - {response.text}")
-                
-        except Exception as e:
-            print(f"❌ فشل الاتصال: {str(e)}")
+        # Simulate finding "Live" signals (Mocking for Demo)
+        # In a real scenario, this would come from the API check
         
-        print("-" * 40)
-        time.sleep(2) # استراحة بين الطلبات
+        # Mock Findings
+        if market['id'] == 'saudi':
+            notifications.append({
+                "id": f"notif_{int(time.time())}_1",
+                "title": "🤖 المايسترو يناديك!",
+                "body": generate_notification("المايسترو", "الراجحي", "BUY"),
+                "time": "الآن",
+                "read": False,
+                "type": "opportunity"
+            })
+        elif market['id'] == 'us':
+            notifications.append({
+                "id": f"notif_{int(time.time())}_2",
+                "title": "🐺 ذئب وول ستريت",
+                "body": generate_notification("الذئب", "NVIDIA", "WIN", 12.5),
+                "time": "منذ 5 دقائق",
+                "read": False,
+                "type": "win"
+            })
+        elif market['id'] == 'crypto':
+             notifications.append({
+                "id": f"notif_{int(time.time())}_3",
+                "title": "👑 ملك الكريبتو",
+                "body": generate_notification("الملك", "BTC", "BUY"),
+                "time": "منذ 15 دقيقة",
+                "read": False,
+                "type": "opportunity"
+            })
 
-    # عرض النتائج النهائية
-    print("\n🏆 **لوحة المتصدرين العالمية (Global Leaderboard)** 🏆")
-    print("=" * 60)
-    print(f"{'السوق':<20} | {'الروبوت':<15} | {'الربح %':<10} | {'الرصيد النهائي':<15}")
-    print("-" * 60)
+    # Save Notifications to Frontend Data
+    frontend_data_path = os.path.join(os.path.dirname(__file__), '..', 'frontend', 'src', 'data', 'notifications.json')
     
-    leaderboard.sort(key=lambda x: x["profit"], reverse=True)
+    # Ensure directory exists
+    os.makedirs(os.path.dirname(frontend_data_path), exist_ok=True)
     
-    for entry in leaderboard:
-        print(f"{entry['market_name']:<20} | {entry['bot_name']:<15} | {entry['profit']:<10}% | {entry['balance']:,.2f}")
-    
-    print("=" * 60)
-    if leaderboard:
-        winner = leaderboard[0]
-        print(f"\n🥇 **بطل العالم هو: {winner['bot_name']} في {winner['market_name']} بربح {winner['profit']}%**")
+    with open(frontend_data_path, 'w', encoding='utf-8') as f:
+        json.dump(notifications, f, ensure_ascii=False, indent=4)
+        
+    print(f"\n✅ تم توليد {len(notifications)} إشعار جديد وارسالها للتطبيق.")
+    print(f"📁 المسار: {frontend_data_path}")
 
 if __name__ == "__main__":
     run_multi_market_simulation()

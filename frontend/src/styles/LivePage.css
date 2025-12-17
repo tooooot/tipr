@@ -1,0 +1,472 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&family=Inter:wght@400;700&display=swap');
+
+.live-page-container {
+    background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
+    font-family: 'Cairo', sans-serif;
+    color: white;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-bottom: 80px;
+    /* Space for BottomNav */
+    position: relative;
+    direction: rtl;
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+    /* Shadow for desktop view */
+}
+
+/* --- Top Section: Market Pulse Ticker --- */
+.market-pulse-ticker {
+    background: linear-gradient(90deg, #1e293b, #0f172a);
+    border-top: 1px solid rgba(59, 130, 246, 0.3);
+    border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    height: 40px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(10px);
+}
+
+.ticker-content {
+    display: inline-flex;
+    animation: marquee 30s linear infinite;
+    gap: 2rem;
+    padding-left: 2rem;
+}
+
+.ticker-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.price-up {
+    color: #22c55e;
+    text-shadow: 0 0 5px rgba(34, 197, 94, 0.3);
+}
+
+.price-down {
+    color: #ef4444;
+    text-shadow: 0 0 5px rgba(239, 68, 68, 0.3);
+}
+
+/* --- Hero Section: The Stage --- */
+.hero-section {
+    height: 50vh;
+    width: 100%;
+    position: relative;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transition: background 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-bg-saudi {
+    background: linear-gradient(135deg, #064e3b, #022c22);
+}
+
+.hero-bg-us {
+    background: linear-gradient(135deg, #1e3a8a, #172554);
+}
+
+.hero-bg-crypto {
+    background: linear-gradient(135deg, #854d0e, #451a03);
+}
+
+.hero-bg-gold {
+    background: linear-gradient(135deg, #78350f, #451a03);
+}
+
+.hero-bg-default {
+    background: linear-gradient(135deg, #0f172a, #000000);
+}
+
+.hero-content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 10;
+}
+
+/* Rich Slide Styles */
+.slide-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    animation: fadeIn 0.4s ease-out;
+}
+
+.slide-label {
+    font-size: 0.9rem;
+    color: #cbd5e1;
+    font-weight: 500;
+}
+
+.slide-title {
+    font-size: 2rem;
+    font-weight: 900;
+    margin: 0;
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.large-text {
+    font-size: 3rem;
+    letter-spacing: 2px;
+}
+
+.slide-sub {
+    font-size: 1rem;
+    color: #94a3b8;
+}
+
+.slide-value {
+    font-size: 3rem;
+    font-weight: 700;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.large-num {
+    font-size: 3.5rem;
+}
+
+.slide-avatar {
+    font-size: 5rem;
+    filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.4));
+}
+
+.slide-badge {
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    backdrop-filter: blur(5px);
+}
+
+.gold-text {
+    color: #fbbf24;
+}
+
+.green-text {
+    color: #22c55e;
+}
+
+.white-bg {
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+/* Battle Slide */
+.slide-content-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    animation: fadeIn 0.4s ease-out;
+    width: 100%;
+    justify-content: center;
+}
+
+.battle-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.battle-avatar {
+    font-size: 4rem;
+    filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+}
+
+.battle-name {
+    font-weight: 700;
+    font-size: 1rem;
+}
+
+.battle-val {
+    font-weight: 700;
+    font-size: 1.2rem;
+    font-family: 'Inter';
+}
+
+.battle-vs {
+    font-weight: 900;
+    font-size: 2rem;
+    color: #94a3b8;
+    font-style: italic;
+}
+
+/* Animations & Effects */
+.bounce {
+    animation: bounce 2s infinite;
+}
+
+.pulse-ring {
+    animation: pulse 1.5s infinite;
+}
+
+.trophy-shine {
+    animation: shine 3s infinite;
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes shine {
+    0% {
+        filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(251, 191, 36, 0.6));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 0 rgba(251, 191, 36, 0));
+    }
+}
+
+/* Bar Graph */
+.bar-graph {
+    margin-top: 20px;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    gap: 6px;
+}
+
+.bar {
+    width: 12px;
+    background: #22c55e;
+    border-radius: 4px 4px 0 0;
+    transition: all 0.3s;
+}
+
+.signal-icon {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    border: 3px solid #fbbf24;
+}
+
+.carousel-dots {
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    gap: 8px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: #fbbf24;
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* --- Middle Section: Transparency Ticker --- */
+.transparency-ticker {
+    background: black;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    border-bottom: 1px solid #334155;
+}
+
+.transparency-item {
+    font-size: 0.9rem;
+    margin: 0 2rem;
+    font-weight: 700;
+}
+
+/* --- Bottom Section: Live Robot Activity Feed --- */
+.activity-feed-section {
+    padding: 20px;
+    flex: 1;
+}
+
+.feed-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: white;
+}
+
+.live-indicator {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #22c55e;
+    animation: blink 2s infinite;
+}
+
+.feed-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.feed-card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    animation: slideIn 0.4s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.status-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+}
+
+.status-buy {
+    background: #22c55e;
+}
+
+.status-sell {
+    background: #ef4444;
+}
+
+.status-scan {
+    background: #3b82f6;
+}
+
+.feed-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    alignItems: center;
+    justifyContent: center;
+    font-size: 1.2rem;
+}
+
+.icon-bg-buy {
+    background: rgba(34, 197, 94, 0.2);
+    color: #22c55e;
+}
+
+.icon-bg-sell {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+}
+
+.icon-bg-scan {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+}
+
+.feed-content {
+    flex: 1;
+}
+
+.robot-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 2px;
+    display: block;
+}
+
+.feed-desc {
+    font-size: 0.8rem;
+    color: #94a3b8;
+    line-height: 1.4;
+}
+
+.feed-time {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-right: auto;
+}
+
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
