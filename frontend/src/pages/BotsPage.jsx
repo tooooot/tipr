@@ -46,11 +46,33 @@ export default function BotsPage() {
             .catch(() => setBots(DEFAULT_BOTS));
     }, []);
 
+    // Calculate portfolio for each bot and sort by balance
+    const botsWithPortfolio = bots.map(bot => {
+        // Filter trades by bot ID first
+        let botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === bot.id) : [];
+
+        // If specific market selected, filter trades by that market
+        if (filter !== 'all') {
+            botTrades = botTrades.filter(t => t.market === filter);
+        }
+
+        const totalProfit = botTrades.reduce((sum, t) => sum + (t.profit_pct || 0), 0);
+        const initialCapital = 100000;
+        const currentBalance = initialCapital + (initialCapital * totalProfit / 100);
+
+        return {
+            ...bot,
+            profit: totalProfit,
+            balance: currentBalance,
+            trades: botTrades.length
+        };
+    });
+
+    // Sort by balance (highest first)
+    const sortedBots = botsWithPortfolio.sort((a, b) => b.balance - a.balance);
+
     // Filter Logic
-    // Filter Logic: Show All Bots for now (Universal Concept), 
-    // unless user wants to simulate filtering by origin (optional). 
-    // For universal bots, we show everything.
-    const filteredBots = bots;
+    const filteredBots = sortedBots;
 
     const getMarketInfo = (bot) => {
         // If filter is 'all', default to Saudi or Bot's origin.
@@ -113,13 +135,9 @@ export default function BotsPage() {
                         gridTemplateColumns: '1fr 1fr',
                         gap: '12px'
                     }}>
-                        {filteredBots.map(bot => {
-                            // Calculate Stats from Real Data
-                            const botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === bot.id) : [];
-                            const profit = botTrades.reduce((sum, t) => sum + (t.profit_pct || 0), 0).toFixed(2);
-
+                        {filteredBots.map((bot, idx) => {
                             const marketInfo = getMarketInfo(bot);
-                            const isPositive = profit >= 0;
+                            const isPositive = bot.profit >= 0;
 
                             return (
                                 <div
@@ -131,12 +149,30 @@ export default function BotsPage() {
                                         cursor: 'pointer',
                                         position: 'relative',
                                         overflow: 'hidden',
-                                        border: '1px solid #334155',
+                                        border: idx === 0 ? '2px solid ' + styles.gold : '1px solid #334155',
                                         display: 'flex',
                                         flexDirection: 'column',
                                         height: '100%'
                                     }}
                                 >
+                                    {/* Rank Badge */}
+                                    {idx < 3 && (
+                                        <div style={{
+                                            position: 'absolute',
+                                            top: '8px',
+                                            left: '8px',
+                                            background: idx === 0 ? styles.gold : (idx === 1 ? '#c0c0c0' : '#cd7f32'),
+                                            color: '#000',
+                                            fontSize: '10px',
+                                            fontWeight: 'bold',
+                                            padding: '4px 8px',
+                                            borderRadius: '8px',
+                                            zIndex: 1
+                                        }}>
+                                            #{idx + 1}
+                                        </div>
+                                    )}
+
                                     {/* Compact Header */}
                                     <div style={{
                                         padding: '16px',
@@ -158,6 +194,21 @@ export default function BotsPage() {
                                         </p>
                                     </div>
 
+                                    {/* Balance Display */}
+                                    <div style={{
+                                        padding: '8px 12px',
+                                        background: '#0f172a',
+                                        borderTop: '1px solid #334155',
+                                        textAlign: 'center'
+                                    }}>
+                                        <div style={{ fontSize: '10px', color: '#64748b', marginBottom: '2px' }}>
+                                            الرصيد
+                                        </div>
+                                        <div style={{ fontSize: '14px', fontWeight: 'bold', color: styles.green }}>
+                                            ${Math.round(bot.balance).toLocaleString()}
+                                        </div>
+                                    </div>
+
                                     {/* Compact Stats */}
                                     <div style={{
                                         padding: '12px',
@@ -167,7 +218,9 @@ export default function BotsPage() {
                                         justifyContent: 'space-between',
                                         alignItems: 'center'
                                     }}>
-                                        <span style={{ fontSize: '18px' }}>{marketInfo.flag}</span>
+                                        <div style={{ fontSize: '10px', color: '#64748b' }}>
+                                            {bot.trades} صفقة
+                                        </div>
                                         <span style={{
                                             color: isPositive ? styles.green : styles.red,
                                             fontSize: '16px',
@@ -175,7 +228,7 @@ export default function BotsPage() {
                                             direction: 'ltr',
                                             fontFamily: 'monospace'
                                         }}>
-                                            {isPositive ? '+' : ''}{profit}%
+                                            {isPositive ? '+' : ''}{bot.profit.toFixed(2)}%
                                         </span>
                                     </div>
                                 </div>
