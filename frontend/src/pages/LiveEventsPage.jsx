@@ -7,8 +7,9 @@ export default function LiveEventsPage() {
     const navigate = useNavigate();
     const [opportunities, setOpportunities] = useState([]);
     const [filter, setFilter] = useState('all'); // all, high, medium, low
+    const [isScanning, setIsScanning] = useState(false);
 
-    useEffect(() => {
+    const loadOpportunities = () => {
         // Load real opportunities from live_notifications.json
         import('../data/live_notifications.json')
             .then(data => {
@@ -21,7 +22,21 @@ export default function LiveEventsPage() {
                 }
             })
             .catch(err => console.error('Failed to load opportunities:', err));
+    };
+
+    useEffect(() => {
+        loadOpportunities();
     }, []);
+
+    const handleQuickScan = async () => {
+        setIsScanning(true);
+
+        // Simulate scanning animation
+        setTimeout(() => {
+            loadOpportunities();
+            setIsScanning(false);
+        }, 2000);
+    };
 
     const getConfidenceLevel = (conf) => {
         if (conf >= 80) return 'high';
@@ -60,25 +75,58 @@ export default function LiveEventsPage() {
                         </p>
 
                         {/* Live Indicator */}
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '8px',
-                            background: '#0f172a',
-                            padding: '8px 12px',
-                            borderRadius: '8px',
-                            width: 'fit-content'
-                        }}>
+                        <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
                             <div style={{
-                                width: '8px',
-                                height: '8px',
-                                borderRadius: '50%',
-                                background: styles.green,
-                                animation: 'pulse 2s infinite'
-                            }} />
-                            <span style={{ fontSize: '12px', color: '#94a3b8' }}>
-                                مباشر - {opportunities.length} فرصة
-                            </span>
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '8px',
+                                background: '#0f172a',
+                                padding: '8px 12px',
+                                borderRadius: '8px',
+                                flex: 1
+                            }}>
+                                <div style={{
+                                    width: '8px',
+                                    height: '8px',
+                                    borderRadius: '50%',
+                                    background: styles.green,
+                                    animation: 'pulse 2s infinite'
+                                }} />
+                                <span style={{ fontSize: '12px', color: '#94a3b8' }}>
+                                    مباشر - {opportunities.length} فرصة
+                                </span>
+                            </div>
+
+                            {/* Quick Scan Button */}
+                            <button
+                                onClick={handleQuickScan}
+                                disabled={isScanning}
+                                style={{
+                                    background: isScanning
+                                        ? 'linear-gradient(135deg, #334155, #1e293b)'
+                                        : 'linear-gradient(135deg, #22c55e, #16a34a)',
+                                    border: 'none',
+                                    padding: '8px 16px',
+                                    borderRadius: '8px',
+                                    color: 'white',
+                                    fontSize: '12px',
+                                    fontWeight: 'bold',
+                                    cursor: isScanning ? 'not-allowed' : 'pointer',
+                                    display: 'flex',
+                                    alignItems: 'center',
+                                    gap: '6px',
+                                    transition: 'all 0.2s',
+                                    boxShadow: isScanning ? 'none' : '0 2px 8px rgba(34, 197, 94, 0.3)'
+                                }}
+                            >
+                                <span style={{
+                                    fontSize: '16px',
+                                    animation: isScanning ? 'spin 1s linear infinite' : 'none'
+                                }}>
+                                    {isScanning ? '⚡' : '🔄'}
+                                </span>
+                                {isScanning ? 'جاري المسح...' : 'مسح سريع'}
+                            </button>
                         </div>
                     </div>
 
@@ -236,6 +284,11 @@ export default function LiveEventsPage() {
                 @keyframes pulse {
                     0%, 100% { opacity: 1; }
                     50% { opacity: 0.5; }
+                }
+
+                @keyframes spin {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
                 }
             `}</style>
         </div>
