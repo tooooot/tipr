@@ -5,99 +5,38 @@ import BottomNav from '../components/BottomNav';
 
 export default function LiveEventsPage() {
     const navigate = useNavigate();
-    const [events, setEvents] = useState([]);
-    const [filter, setFilter] = useState('all'); // all, scans, trades, opportunities
+    const [opportunities, setOpportunities] = useState([]);
+    const [filter, setFilter] = useState('all'); // all, high, medium, low
 
     useEffect(() => {
-        // Simulate live events - In production, this would come from backend
-        const generateEvents = () => {
-            const currentTime = new Date();
-            const newEvents = [
-                {
-                    id: Date.now() + '_scan',
-                    type: 'scan',
-                    robot: 'al_qannas',
-                    robotName: 'القناص',
-                    emoji: '🎯',
-                    message: 'يفحص 28 سهم... RSI طبيعي (45-60)',
-                    time: currentTime.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-                    timestamp: currentTime.getTime()
-                },
-                {
-                    id: Date.now() + '_opportunity',
-                    type: 'opportunity',
-                    robot: 'al_maestro',
-                    robotName: 'المايسترو',
-                    emoji: '🎭',
-                    message: '🚨 اكتشف فرصة في NVDA - زخم قوي +3.2%',
-                    time: currentTime.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-                    timestamp: currentTime.getTime(),
-                    executed: false,
-                    reason: 'لا يوجد رصيد كافٍ (يحتاج $2000)'
-                },
-                {
-                    id: Date.now() + '_scan2',
-                    type: 'scan',
-                    robot: 'sayyad_alfors',
-                    robotName: 'صياد الفرص',
-                    emoji: '🏹',
-                    message: 'يراقب القيعان... لا فرص واضحة',
-                    time: currentTime.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-                    timestamp: currentTime.getTime()
-                },
-                {
-                    id: Date.now() + '_trade',
-                    type: 'trade',
-                    robot: 'al_qannas',
-                    robotName: 'القناص',
-                    emoji: '🎯',
-                    message: '✅ فتح صفقة: AAPL @ $178.50',
-                    time: currentTime.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-                    timestamp: currentTime.getTime(),
-                    executed: true
-                },
-                {
-                    id: Date.now() + '_scan3',
-                    type: 'scan',
-                    robot: 'al_hout',
-                    robotName: 'الحوت',
-                    emoji: '🐋',
-                    message: 'يتابع الأحجام... حجم منخفض (450M)',
-                    time: currentTime.toLocaleTimeString('ar-SA', { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
-                    timestamp: currentTime.getTime()
+        // Load real opportunities from live_notifications.json
+        import('../data/live_notifications.json')
+            .then(data => {
+                if (data.default) {
+                    // Only show opportunities (not other event types)
+                    const opps = data.default
+                        .filter(item => item.type === 'opportunity')
+                        .slice(0, 50); // Show latest 50
+                    setOpportunities(opps);
                 }
-            ];
-
-            setEvents(prev => [...newEvents, ...prev].slice(0, 100)); // Keep last 100 events
-        };
-
-        generateEvents();
-
-        // Update every 10 seconds with new events
-        const interval = setInterval(generateEvents, 10000);
-        return () => clearInterval(interval);
+            })
+            .catch(err => console.error('Failed to load opportunities:', err));
     }, []);
 
-    const filteredEvents = filter === 'all'
-        ? events
-        : events.filter(e => e.type === filter);
-
-    const getEventColor = (type) => {
-        switch (type) {
-            case 'scan': return '#64748b';
-            case 'opportunity': return styles.gold;
-            case 'trade': return styles.green;
-            default: return '#94a3b8';
-        }
+    const getConfidenceLevel = (conf) => {
+        if (conf >= 80) return 'high';
+        if (conf >= 70) return 'medium';
+        return 'low';
     };
 
-    const getEventIcon = (type) => {
-        switch (type) {
-            case 'scan': return '🔍';
-            case 'opportunity': return '🚨';
-            case 'trade': return '💼';
-            default: return '•';
-        }
+    const filteredOpportunities = filter === 'all'
+        ? opportunities
+        : opportunities.filter(o => getConfidenceLevel(o.confidence) === filter);
+
+    const getConfidenceColor = (conf) => {
+        if (conf >= 80) return styles.green;
+        if (conf >= 70) return styles.gold;
+        return '#94a3b8';
     };
 
     return (
@@ -113,11 +52,11 @@ export default function LiveEventsPage() {
                         border: '1px solid #334155'
                     }}>
                         <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-                            <span style={{ fontSize: '32px' }}>📡</span>
-                            <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0 }}>الأحداث المباشرة</h1>
+                            <span style={{ fontSize: '32px' }}>⚡</span>
+                            <h1 style={{ fontSize: '24px', fontWeight: 'bold', margin: 0 }}>الفرص الحية</h1>
                         </div>
                         <p style={{ color: '#94a3b8', fontSize: '14px', marginBottom: '12px' }}>
-                            سجل لحظي لكل ما يحدث من فحص وصفقات
+                            توصيات احترافية مكتشفة بواسطة الروبوتات
                         </p>
 
                         {/* Live Indicator */}
@@ -138,7 +77,7 @@ export default function LiveEventsPage() {
                                 animation: 'pulse 2s infinite'
                             }} />
                             <span style={{ fontSize: '12px', color: '#94a3b8' }}>
-                                مباشر - {events.length} حدث
+                                مباشر - {opportunities.length} فرصة
                             </span>
                         </div>
                     </div>
@@ -147,9 +86,9 @@ export default function LiveEventsPage() {
                     <div style={{ display: 'flex', gap: '8px', marginBottom: '24px', overflowX: 'auto' }}>
                         {[
                             { id: 'all', label: 'الكل', icon: '📊' },
-                            { id: 'scan', label: 'فحص', icon: '🔍' },
-                            { id: 'opportunity', label: 'فرص', icon: '🚨' },
-                            { id: 'trade', label: 'صفقات', icon: '💼' }
+                            { id: 'high', label: 'ثقة عالية', icon: '🔥' },
+                            { id: 'medium', label: 'ثقة متوسطة', icon: '⭐' },
+                            { id: 'low', label: 'ثقة منخفضة', icon: '💡' }
                         ].map(f => (
                             <button
                                 key={f.id}
@@ -172,9 +111,9 @@ export default function LiveEventsPage() {
                         ))}
                     </div>
 
-                    {/* Events Timeline */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                        {filteredEvents.length === 0 ? (
+                    {/* Opportunities List */}
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '100px' }}>
+                        {filteredOpportunities.length === 0 ? (
                             <div style={{
                                 background: '#1e293b',
                                 padding: '40px',
@@ -183,129 +122,106 @@ export default function LiveEventsPage() {
                             }}>
                                 <span style={{ fontSize: '48px', opacity: 0.5 }}>📭</span>
                                 <p style={{ color: '#94a3b8', marginTop: '16px' }}>
-                                    لا توجد أحداث {filter !== 'all' && `من نوع "${filter}"`}
+                                    لا توجد فرص {filter !== 'all' && `بثقة "${filter}"`}
                                 </p>
                             </div>
                         ) : (
-                            filteredEvents.map((event, idx) => (
+                            filteredOpportunities.map((opp, idx) => (
                                 <div
-                                    key={event.id}
-                                    onClick={() => {
-                                        if (event.type === 'opportunity' && event.opportunityId) {
-                                            navigate(`/opportunity/${event.opportunityId}`);
-                                        }
-                                    }}
+                                    key={opp.id}
+                                    onClick={() => navigate(`/opportunity/${opp.id}`)}
                                     style={{
                                         background: '#1e293b',
-                                        borderRadius: '12px',
+                                        borderRadius: '16px',
                                         padding: '16px',
-                                        borderLeft: `4px solid ${getEventColor(event.type)}`,
+                                        border: '1px solid #334155',
+                                        cursor: 'pointer',
+                                        transition: 'all 0.2s',
                                         opacity: 0,
-                                        animation: `fadeIn 0.3s ease-out ${idx * 0.05}s forwards`,
-                                        cursor: event.type === 'opportunity' ? 'pointer' : 'default',
-                                        transition: 'transform 0.2s'
+                                        animation: `fadeIn 0.3s ease-out ${idx * 0.05}s forwards`
                                     }}
                                     onMouseEnter={(e) => {
-                                        if (event.type === 'opportunity') {
-                                            e.currentTarget.style.transform = 'translateX(-4px)';
-                                        }
+                                        e.currentTarget.style.transform = 'translateX(-4px)';
+                                        e.currentTarget.style.borderColor = styles.gold;
                                     }}
                                     onMouseLeave={(e) => {
                                         e.currentTarget.style.transform = 'translateX(0)';
+                                        e.currentTarget.style.borderColor = '#334155';
                                     }}
                                 >
-                                    <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
-                                        {/* Time Stamp */}
-                                        <div style={{
-                                            minWidth: '65px',
-                                            textAlign: 'center',
-                                            paddingTop: '4px'
-                                        }}>
-                                            <div style={{
-                                                fontSize: '18px',
-                                                marginBottom: '4px'
-                                            }}>
-                                                {getEventIcon(event.type)}
-                                            </div>
-                                            <div style={{
-                                                fontSize: '10px',
-                                                color: '#64748b',
-                                                fontFamily: 'monospace'
-                                            }}>
-                                                {event.time}
-                                            </div>
-                                        </div>
+                                    <div style={{ display: 'flex', gap: '12px' }}>
+                                        {/* Icon */}
+                                        <div style={{ fontSize: '40px' }}>{opp.emoji}</div>
 
                                         {/* Content */}
                                         <div style={{ flex: 1 }}>
-                                            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '6px' }}>
-                                                <span style={{ fontSize: '20px' }}>{event.emoji}</span>
-                                                <span style={{ fontSize: '13px', fontWeight: 'bold', color: styles.gold }}>
-                                                    {event.robotName}
-                                                </span>
+                                            {/* Header */}
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px' }}>
+                                                <div>
+                                                    <h3 style={{ fontSize: '16px', fontWeight: 'bold', margin: '0 0 4px 0', color: 'white' }}>
+                                                        {opp.stock_name}
+                                                    </h3>
+                                                    <div style={{ fontSize: '11px', color: '#64748b' }}>
+                                                        {opp.symbol} • {opp.bot_name}
+                                                    </div>
+                                                </div>
+
+                                                {/* Confidence Badge */}
+                                                <div style={{
+                                                    background: getConfidenceColor(opp.confidence) + '20',
+                                                    border: `1px solid ${getConfidenceColor(opp.confidence)}`,
+                                                    padding: '4px 10px',
+                                                    borderRadius: '8px',
+                                                    fontSize: '12px',
+                                                    fontWeight: 'bold',
+                                                    color: getConfidenceColor(opp.confidence)
+                                                }}>
+                                                    {opp.confidence}%
+                                                </div>
                                             </div>
 
-                                            <p style={{
-                                                fontSize: '14px',
-                                                color: '#cbd5e1',
-                                                margin: 0,
-                                                lineHeight: '1.5'
+                                            {/* Signal */}
+                                            <div style={{
+                                                background: 'rgba(34, 197, 94, 0.1)',
+                                                padding: '8px 12px',
+                                                borderRadius: '8px',
+                                                marginBottom: '8px',
+                                                borderRight: `3px solid ${styles.green}`
                                             }}>
-                                                {event.message}
-                                            </p>
-
-                                            {/* Execution Status */}
-                                            {event.type === 'opportunity' && (
-                                                <div style={{
-                                                    marginTop: '8px',
-                                                    padding: '8px 12px',
-                                                    background: event.executed ? 'rgba(34, 197, 94, 0.1)' : 'rgba(239, 68, 68, 0.1)',
-                                                    borderRadius: '8px',
-                                                    fontSize: '12px'
-                                                }}>
-                                                    {event.executed ? (
-                                                        <span style={{ color: styles.green }}>
-                                                            ✅ تم الدخول في الصفقة
-                                                        </span>
-                                                    ) : (
-                                                        <span style={{ color: styles.red }}>
-                                                            ❌ لم يتم التنفيذ: {event.reason}
-                                                        </span>
-                                                    )}
+                                                <div style={{ fontSize: '12px', fontWeight: 'bold', color: styles.green, marginBottom: '4px' }}>
+                                                    {opp.signal}
                                                 </div>
-                                            )}
-
-                                            {/* Click hint for opportunities */}
-                                            {event.type === 'opportunity' && event.opportunityId && (
-                                                <div style={{
-                                                    marginTop: '8px',
-                                                    fontSize: '11px',
-                                                    color: styles.gold,
-                                                    display: 'flex',
-                                                    alignItems: 'center',
-                                                    gap: '4px'
-                                                }}>
-                                                    👉 اضغط لعرض التوصية الكاملة
+                                                <div style={{ fontSize: '12px', color: '#cbd5e1' }}>
+                                                    {opp.reason}
                                                 </div>
-                                            )}
+                                            </div>
+
+                                            {/* Price & Time */}
+                                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                                <div style={{ fontSize: '14px', fontWeight: 'bold', color: styles.gold }}>
+                                                    ${opp.price.toFixed(2)}
+                                                </div>
+                                                <div style={{ fontSize: '11px', color: '#64748b' }}>
+                                                    {opp.time}
+                                                </div>
+                                            </div>
+
+                                            {/* Click Hint */}
+                                            <div style={{
+                                                marginTop: '8px',
+                                                fontSize: '11px',
+                                                color: styles.gold,
+                                                display: 'flex',
+                                                alignItems: 'center',
+                                                gap: '4px'
+                                            }}>
+                                                👉 اضغط لعرض التوصية الكاملة
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             ))
                         )}
-                    </div>
-
-                    {/* Info */}
-                    <div style={{
-                        background: 'rgba(139, 92, 246, 0.1)',
-                        padding: '16px',
-                        borderRadius: '12px',
-                        marginTop: '24px',
-                        border: '1px solid rgba(139, 92, 246, 0.3)'
-                    }}>
-                        <p style={{ fontSize: '13px', color: '#a78bfa', lineHeight: '1.6', margin: 0, textAlign: 'center' }}>
-                            💡 يتم تحديث الأحداث كل 10 ثوانٍ تلقائياً
-                        </p>
                     </div>
                 </div>
                 <BottomNav />
@@ -313,8 +229,8 @@ export default function LiveEventsPage() {
 
             <style>{`
                 @keyframes fadeIn {
-                    from { opacity: 0; transform: translateX(10px); }
-                    to { opacity: 1; transform: translateX(0); }
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
                 
                 @keyframes pulse {
