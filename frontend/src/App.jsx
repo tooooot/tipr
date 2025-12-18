@@ -21,6 +21,7 @@ import NotificationsPage from './pages/NotificationsPage';
 import LiveChartPage from './pages/LiveChartPage';
 import OpportunitiesPage from './pages/OpportunitiesPage';
 import RobotStatusPage from './pages/RobotStatusPage';
+import LiveEventsPage from './pages/LiveEventsPage';
 
 function App() {
   // System Notification Setup
@@ -75,6 +76,7 @@ function App() {
         <Route path="/notifications" element={<NotificationsPage />} />
         <Route path="/opportunities" element={<OpportunitiesPage />} />
         <Route path="/robot-status" element={<RobotStatusPage />} />
+        <Route path="/live-events" element={<LiveEventsPage />} />
         <Route path="/verification" element={<VerificationPage />} />
 
         {/* Fallback routes */}
