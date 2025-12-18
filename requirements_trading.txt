@@ -1,0 +1,15 @@
+# Tipr - Live Trading Requirements
+# تثبيت: pip install -r requirements_trading.txt
+
+# Binance API
+python-binance==1.0.19
+
+# متعدد المنصات (اختياري)
+ccxt==4.2.25
+
+# إدارة المتغيرات البيئية
+python-dotenv==1.0.0
+
+# الموجود مسبقاً
+requests
+beautifulsoup4
