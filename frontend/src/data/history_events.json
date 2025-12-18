@@ -1,647 +1,870 @@
 {
-    "awards": [
-        {
-            "type": "AWARD",
-            "date": "2024-07-06",
-            "title_ar": "نجم الأسبوع (03/07 - 06/07)",
-            "bot_id": "altcoin_hunter",
-            "profit": 49.51,
-            "description_ar": "حقق الروبوت altcoin_hunter صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-07-13",
-            "title_ar": "نجم الأسبوع (08/07 - 13/07)",
-            "bot_id": "shield_keeper",
-            "profit": 56.78,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-07-20",
-            "title_ar": "نجم الأسبوع (14/07 - 20/07)",
-            "bot_id": "wave_breaker",
-            "profit": 15.74,
-            "description_ar": "حقق الروبوت wave_breaker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-08-10",
-            "title_ar": "نجم الأسبوع (04/08 - 10/08)",
-            "bot_id": "al_qannas",
-            "profit": 48.3,
-            "description_ar": "حقق الروبوت al_qannas صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-08-17",
-            "title_ar": "نجم الأسبوع (12/08 - 17/08)",
-            "bot_id": "shield_keeper",
-            "profit": 31.46,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-09-07",
-            "title_ar": "نجم الأسبوع (02/09 - 07/09)",
-            "bot_id": "altcoin_hunter",
-            "profit": 101.5,
-            "description_ar": "حقق الروبوت altcoin_hunter صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-09-14",
-            "title_ar": "نجم الأسبوع (08/09 - 14/09)",
-            "bot_id": "shield_keeper",
-            "profit": 53.39,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-09-21",
-            "title_ar": "نجم الأسبوع (16/09 - 21/09)",
-            "bot_id": "indicator_pro",
-            "profit": 17.82,
-            "description_ar": "حقق الروبوت indicator_pro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-09-28",
-            "title_ar": "نجم الأسبوع (22/09 - 28/09)",
-            "bot_id": "shield_keeper",
-            "profit": 12.47,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-10-05",
-            "title_ar": "نجم الأسبوع (29/09 - 05/10)",
-            "bot_id": "shield_keeper",
-            "profit": 51.89,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-10-11",
-            "title_ar": "نجم الأسبوع (06/10 - 11/10)",
-            "bot_id": "copy_cat",
-            "profit": 24.8,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-10-19",
-            "title_ar": "نجم الأسبوع (13/10 - 19/10)",
-            "bot_id": "momentum_tracker",
-            "profit": 49.56,
-            "description_ar": "حقق الروبوت momentum_tracker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-10-26",
-            "title_ar": "نجم الأسبوع (20/10 - 26/10)",
-            "bot_id": "sayyad_alfors",
-            "profit": 38.3,
-            "description_ar": "حقق الروبوت sayyad_alfors صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-11-02",
-            "title_ar": "نجم الأسبوع (27/10 - 02/11)",
-            "bot_id": "shield_keeper",
-            "profit": 94.52,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-11-09",
-            "title_ar": "نجم الأسبوع (03/11 - 09/11)",
-            "bot_id": "momentum_tracker",
-            "profit": 212.83,
-            "description_ar": "حقق الروبوت momentum_tracker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-11-16",
-            "title_ar": "نجم الأسبوع (10/11 - 16/11)",
-            "bot_id": "copy_cat",
-            "profit": 155.38,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-11-23",
-            "title_ar": "نجم الأسبوع (17/11 - 23/11)",
-            "bot_id": "defi_wizard",
-            "profit": 86.84,
-            "description_ar": "حقق الروبوت defi_wizard صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-11-30",
-            "title_ar": "نجم الأسبوع (24/11 - 30/11)",
-            "bot_id": "copy_cat",
-            "profit": 109.14,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-12-06",
-            "title_ar": "نجم الأسبوع (01/12 - 06/12)",
-            "bot_id": "crypto_king",
-            "profit": 29.87,
-            "description_ar": "حقق الروبوت crypto_king صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-12-14",
-            "title_ar": "نجم الأسبوع (08/12 - 14/12)",
-            "bot_id": "wave_breaker",
-            "profit": 12.54,
-            "description_ar": "حقق الروبوت wave_breaker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-12-21",
-            "title_ar": "نجم الأسبوع (15/12 - 21/12)",
-            "bot_id": "altcoin_hunter",
-            "profit": 45.71,
-            "description_ar": "حقق الروبوت altcoin_hunter صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-12-27",
-            "title_ar": "نجم الأسبوع (22/12 - 27/12)",
-            "bot_id": "al_qannas",
-            "profit": 46.53,
-            "description_ar": "حقق الروبوت al_qannas صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2024-12-31",
-            "title_ar": "نجم الأسبوع (29/12 - 31/12)",
-            "bot_id": "al_qannas",
-            "profit": 36.55,
-            "description_ar": "حقق الروبوت al_qannas صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-01-04",
-            "title_ar": "نجم الأسبوع (01/01 - 04/01)",
-            "bot_id": "shield_keeper",
-            "profit": 36.97,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-01-11",
-            "title_ar": "نجم الأسبوع (05/01 - 11/01)",
-            "bot_id": "shield_keeper",
-            "profit": 48.36,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-01-18",
-            "title_ar": "نجم الأسبوع (12/01 - 18/01)",
-            "bot_id": "shield_keeper",
-            "profit": 22.56,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-01-25",
-            "title_ar": "نجم الأسبوع (19/01 - 25/01)",
-            "bot_id": "wave_breaker",
-            "profit": 12.65,
-            "description_ar": "حقق الروبوت wave_breaker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-01-31",
-            "title_ar": "نجم الأسبوع (26/01 - 31/01)",
-            "bot_id": "defi_wizard",
-            "profit": 17.0,
-            "description_ar": "حقق الروبوت defi_wizard صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-02-08",
-            "title_ar": "نجم الأسبوع (02/02 - 08/02)",
-            "bot_id": "shield_keeper",
-            "profit": 10.61,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-02-15",
-            "title_ar": "نجم الأسبوع (09/02 - 15/02)",
-            "bot_id": "wave_breaker",
-            "profit": 3.71,
-            "description_ar": "حقق الروبوت wave_breaker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-03-01",
-            "title_ar": "نجم الأسبوع (23/02 - 01/03)",
-            "bot_id": "sayyad_alfors",
-            "profit": 65.92,
-            "description_ar": "حقق الروبوت sayyad_alfors صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-03-15",
-            "title_ar": "نجم الأسبوع (09/03 - 15/03)",
-            "bot_id": "al_qannas",
-            "profit": 52.19,
-            "description_ar": "حقق الروبوت al_qannas صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-03-22",
-            "title_ar": "نجم الأسبوع (16/03 - 22/03)",
-            "bot_id": "indicator_pro",
-            "profit": 8.63,
-            "description_ar": "حقق الروبوت indicator_pro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-03-28",
-            "title_ar": "نجم الأسبوع (23/03 - 28/03)",
-            "bot_id": "al_maestro",
-            "profit": 1.21,
-            "description_ar": "حقق الروبوت al_maestro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-04-04",
-            "title_ar": "نجم الأسبوع (30/03 - 04/04)",
-            "bot_id": "crypto_king",
-            "profit": 1.62,
-            "description_ar": "حقق الروبوت crypto_king صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-04-12",
-            "title_ar": "نجم الأسبوع (06/04 - 12/04)",
-            "bot_id": "sayyad_alfors",
-            "profit": 137.48,
-            "description_ar": "حقق الروبوت sayyad_alfors صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-04-19",
-            "title_ar": "نجم الأسبوع (13/04 - 19/04)",
-            "bot_id": "shield_keeper",
-            "profit": 74.54,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-04-26",
-            "title_ar": "نجم الأسبوع (20/04 - 26/04)",
-            "bot_id": "shield_keeper",
-            "profit": 88.08,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-05-02",
-            "title_ar": "نجم الأسبوع (27/04 - 02/05)",
-            "bot_id": "momentum_tracker",
-            "profit": 45.18,
-            "description_ar": "حقق الروبوت momentum_tracker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-05-10",
-            "title_ar": "نجم الأسبوع (04/05 - 10/05)",
-            "bot_id": "indicator_pro",
-            "profit": 104.13,
-            "description_ar": "حقق الروبوت indicator_pro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-05-17",
-            "title_ar": "نجم الأسبوع (11/05 - 17/05)",
-            "bot_id": "crypto_king",
-            "profit": 16.71,
-            "description_ar": "حقق الروبوت crypto_king صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-05-24",
-            "title_ar": "نجم الأسبوع (18/05 - 24/05)",
-            "bot_id": "indicator_pro",
-            "profit": 18.73,
-            "description_ar": "حقق الروبوت indicator_pro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-05-31",
-            "title_ar": "نجم الأسبوع (25/05 - 31/05)",
-            "bot_id": "indicator_pro",
-            "profit": 15.35,
-            "description_ar": "حقق الروبوت indicator_pro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-06-06",
-            "title_ar": "نجم الأسبوع (01/06 - 06/06)",
-            "bot_id": "copy_cat",
-            "profit": 26.23,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-06-14",
-            "title_ar": "نجم الأسبوع (08/06 - 14/06)",
-            "bot_id": "wall_street_wolf",
-            "profit": 20.92,
-            "description_ar": "حقق الروبوت wall_street_wolf صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-06-21",
-            "title_ar": "نجم الأسبوع (15/06 - 21/06)",
-            "bot_id": "copy_cat",
-            "profit": 47.94,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-06-28",
-            "title_ar": "نجم الأسبوع (22/06 - 28/06)",
-            "bot_id": "shield_keeper",
-            "profit": 77.43,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-07-04",
-            "title_ar": "نجم الأسبوع (29/06 - 04/07)",
-            "bot_id": "momentum_tracker",
-            "profit": 78.98,
-            "description_ar": "حقق الروبوت momentum_tracker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-07-12",
-            "title_ar": "نجم الأسبوع (06/07 - 12/07)",
-            "bot_id": "wall_street_wolf",
-            "profit": 140.74,
-            "description_ar": "حقق الروبوت wall_street_wolf صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-07-19",
-            "title_ar": "نجم الأسبوع (13/07 - 19/07)",
-            "bot_id": "copy_cat",
-            "profit": 49.63,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-07-25",
-            "title_ar": "نجم الأسبوع (20/07 - 25/07)",
-            "bot_id": "altcoin_hunter",
-            "profit": 16.29,
-            "description_ar": "حقق الروبوت altcoin_hunter صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-08-02",
-            "title_ar": "نجم الأسبوع (27/07 - 02/08)",
-            "bot_id": "al_hout",
-            "profit": 12.5,
-            "description_ar": "حقق الروبوت al_hout صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-08-09",
-            "title_ar": "نجم الأسبوع (03/08 - 09/08)",
-            "bot_id": "shield_keeper",
-            "profit": 77.43,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-08-16",
-            "title_ar": "نجم الأسبوع (10/08 - 16/08)",
-            "bot_id": "al_maestro",
-            "profit": 9.08,
-            "description_ar": "حقق الروبوت al_maestro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-08-23",
-            "title_ar": "نجم الأسبوع (17/08 - 23/08)",
-            "bot_id": "shield_keeper",
-            "profit": 11.76,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-08-30",
-            "title_ar": "نجم الأسبوع (24/08 - 30/08)",
-            "bot_id": "copy_cat",
-            "profit": 18.87,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-09-05",
-            "title_ar": "نجم الأسبوع (31/08 - 05/09)",
-            "bot_id": "shield_keeper",
-            "profit": 53.91,
-            "description_ar": "حقق الروبوت shield_keeper صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-09-13",
-            "title_ar": "نجم الأسبوع (07/09 - 13/09)",
-            "bot_id": "dividend_king",
-            "profit": 27.0,
-            "description_ar": "حقق الروبوت dividend_king صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-09-20",
-            "title_ar": "نجم الأسبوع (14/09 - 20/09)",
-            "bot_id": "wave_breaker",
-            "profit": 23.17,
-            "description_ar": "حقق الروبوت wave_breaker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-09-27",
-            "title_ar": "نجم الأسبوع (21/09 - 27/09)",
-            "bot_id": "wall_street_wolf",
-            "profit": 29.88,
-            "description_ar": "حقق الروبوت wall_street_wolf صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-10-04",
-            "title_ar": "نجم الأسبوع (28/09 - 04/10)",
-            "bot_id": "indicator_pro",
-            "profit": 39.3,
-            "description_ar": "حقق الروبوت indicator_pro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-10-10",
-            "title_ar": "نجم الأسبوع (05/10 - 10/10)",
-            "bot_id": "crypto_king",
-            "profit": 8.85,
-            "description_ar": "حقق الروبوت crypto_king صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-10-18",
-            "title_ar": "نجم الأسبوع (12/10 - 18/10)",
-            "bot_id": "copy_cat",
-            "profit": 33.62,
-            "description_ar": "حقق الروبوت copy_cat صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-10-25",
-            "title_ar": "نجم الأسبوع (20/10 - 25/10)",
-            "bot_id": "crypto_king",
-            "profit": 11.06,
-            "description_ar": "حقق الروبوت crypto_king صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-11-07",
-            "title_ar": "نجم الأسبوع (02/11 - 07/11)",
-            "bot_id": "al_qannas",
-            "profit": 8.29,
-            "description_ar": "حقق الروبوت al_qannas صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-11-15",
-            "title_ar": "نجم الأسبوع (09/11 - 15/11)",
-            "bot_id": "gap_hunter",
-            "profit": 7.89,
-            "description_ar": "حقق الروبوت gap_hunter صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-11-22",
-            "title_ar": "نجم الأسبوع (16/11 - 22/11)",
-            "bot_id": "al_qannas",
-            "profit": 54.2,
-            "description_ar": "حقق الروبوت al_qannas صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-11-28",
-            "title_ar": "نجم الأسبوع (23/11 - 28/11)",
-            "bot_id": "momentum_tracker",
-            "profit": 10.5,
-            "description_ar": "حقق الروبوت momentum_tracker صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-12-06",
-            "title_ar": "نجم الأسبوع (01/12 - 06/12)",
-            "bot_id": "indicator_pro",
-            "profit": 4.57,
-            "description_ar": "حقق الروبوت indicator_pro صدارة الأسبوع بعائد ممتاز."
-        },
-        {
-            "type": "AWARD",
-            "date": "2025-12-13",
-            "title_ar": "نجم الأسبوع (07/12 - 13/12)",
-            "bot_id": "al_qannas",
-            "profit": 1.14,
-            "description_ar": "حقق الروبوت al_qannas صدارة الأسبوع بعائد ممتاز."
-        }
-    ],
-    "legendary_trades": [
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2025-02-27",
-            "symbol": "ADA-USD",
-            "bot_id": "sayyad_alfors",
-            "profit": 73.77,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2025-03-01",
-            "symbol": "ADA-USD",
-            "bot_id": "dividend_king",
-            "profit": 71.14,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-11-07",
-            "symbol": "DOGE-USD",
-            "bot_id": "momentum_tracker",
-            "profit": 46.89,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-11-07",
-            "symbol": "DOGE-USD",
-            "bot_id": "indicator_pro",
-            "profit": 46.89,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-11-17",
-            "symbol": "ADA-USD",
-            "bot_id": "smart_investor",
-            "profit": 44.35,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-11-17",
-            "symbol": "ADA-USD",
-            "bot_id": "wall_street_wolf",
-            "profit": 44.35,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-11-07",
-            "symbol": "ADA-USD",
-            "bot_id": "defi_wizard",
-            "profit": 43.98,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-10-31",
-            "symbol": "COIN",
-            "bot_id": "gap_hunter",
-            "profit": 41.87,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-11-17",
-            "symbol": "XRP-USD",
-            "bot_id": "crypto_king",
-            "profit": 39.91,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        },
-        {
-            "type": "LEGENDARY_TRADE",
-            "date": "2024-11-17",
-            "symbol": "XRP-USD",
-            "bot_id": "defi_wizard",
-            "profit": 39.91,
-            "description_ar": "صفقة أسطورية كسرت التوقعات!"
-        }
-    ],
-    "generated_at": "2025-12-16 17:04:31"
+  "awards": [
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 08 December",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 7.6%",
+      "profit": 7.6,
+      "date": "2025-12-08",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 01 December",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 4.8%",
+      "profit": 4.8,
+      "date": "2025-12-01",
+      "trades_count": 3
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 24 November",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 4.9%",
+      "profit": 4.9,
+      "date": "2025-11-24",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 17 November",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 5.8%",
+      "profit": 5.8,
+      "date": "2025-11-17",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 10 November",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 5.8%",
+      "profit": 5.8,
+      "date": "2025-11-10",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 03 November",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 4.4%",
+      "profit": 4.4,
+      "date": "2025-11-03",
+      "trades_count": 3
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 27 October",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 7.0%",
+      "profit": 7.0,
+      "date": "2025-10-27",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 20 October",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 2.7%",
+      "profit": 2.7,
+      "date": "2025-10-20",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 13 October",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 9.1%",
+      "profit": 9.1,
+      "date": "2025-10-13",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 06 October",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 3.8%",
+      "profit": 3.8,
+      "date": "2025-10-06",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 29 September",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 5.2%",
+      "profit": 5.2,
+      "date": "2025-09-29",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 22 September",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 5.3%",
+      "profit": 5.3,
+      "date": "2025-09-22",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "sayyad_alfors",
+      "title_ar": "🏆 نجم الأسبوع - 15 September",
+      "description_ar": "صياد الفرص حقق أعلى أداء بمتوسط 4.4%",
+      "profit": 4.4,
+      "date": "2025-09-15",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 08 September",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 5.0%",
+      "profit": 5.0,
+      "date": "2025-09-08",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "sayyad_alfors",
+      "title_ar": "🏆 نجم الأسبوع - 01 September",
+      "description_ar": "صياد الفرص حقق أعلى أداء بمتوسط 2.9%",
+      "profit": 2.9,
+      "date": "2025-09-01",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 25 August",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 7.1%",
+      "profit": 7.1,
+      "date": "2025-08-25",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 18 August",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 8.2%",
+      "profit": 8.2,
+      "date": "2025-08-18",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 11 August",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 2.0%",
+      "profit": 2.0,
+      "date": "2025-08-11",
+      "trades_count": 3
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 04 August",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 5.1%",
+      "profit": 5.1,
+      "date": "2025-08-04",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 28 July",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 3.3%",
+      "profit": 3.3,
+      "date": "2025-07-28",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 21 July",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 3.9%",
+      "profit": 3.9,
+      "date": "2025-07-21",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 14 July",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 4.0%",
+      "profit": 4.0,
+      "date": "2025-07-14",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 07 July",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 6.4%",
+      "profit": 6.4,
+      "date": "2025-07-07",
+      "trades_count": 3
+    },
+    {
+      "bot_id": "sayyad_alfors",
+      "title_ar": "🏆 نجم الأسبوع - 30 June",
+      "description_ar": "صياد الفرص حقق أعلى أداء بمتوسط 4.8%",
+      "profit": 4.8,
+      "date": "2025-06-30",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 09 June",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 4.2%",
+      "profit": 4.2,
+      "date": "2025-06-09",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 02 June",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 4.1%",
+      "profit": 4.1,
+      "date": "2025-06-02",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 26 May",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 4.3%",
+      "profit": 4.3,
+      "date": "2025-05-26",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 19 May",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 6.1%",
+      "profit": 6.1,
+      "date": "2025-05-19",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 12 May",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 5.1%",
+      "profit": 5.1,
+      "date": "2025-05-12",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 05 May",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 11.1%",
+      "profit": 11.1,
+      "date": "2025-05-05",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 28 April",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 7.9%",
+      "profit": 7.9,
+      "date": "2025-04-28",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 21 April",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 4.9%",
+      "profit": 4.9,
+      "date": "2025-04-21",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 14 April",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 4.4%",
+      "profit": 4.4,
+      "date": "2025-04-14",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 07 April",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 5.6%",
+      "profit": 5.6,
+      "date": "2025-04-07",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 31 March",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 4.2%",
+      "profit": 4.2,
+      "date": "2025-03-31",
+      "trades_count": 3
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 24 March",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 7.8%",
+      "profit": 7.8,
+      "date": "2025-03-24",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 17 March",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 8.1%",
+      "profit": 8.1,
+      "date": "2025-03-17",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 10 March",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 7.1%",
+      "profit": 7.1,
+      "date": "2025-03-10",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 03 March",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 5.2%",
+      "profit": 5.2,
+      "date": "2025-03-03",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 24 February",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 5.7%",
+      "profit": 5.7,
+      "date": "2025-02-24",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 17 February",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 5.3%",
+      "profit": 5.3,
+      "date": "2025-02-17",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 10 February",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 5.7%",
+      "profit": 5.7,
+      "date": "2025-02-10",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_qannas",
+      "title_ar": "🏆 نجم الأسبوع - 03 February",
+      "description_ar": "القناص حقق أعلى أداء بمتوسط 4.1%",
+      "profit": 4.1,
+      "date": "2025-02-03",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 20 January",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 2.9%",
+      "profit": 2.9,
+      "date": "2025-01-20",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_maestro",
+      "title_ar": "🏆 نجم الأسبوع - 13 January",
+      "description_ar": "المايسترو حقق أعلى أداء بمتوسط 4.5%",
+      "profit": 4.5,
+      "date": "2025-01-13",
+      "trades_count": 2
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 06 January",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 5.0%",
+      "profit": 5.0,
+      "date": "2025-01-06",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_jasour",
+      "title_ar": "🏆 نجم الأسبوع - 30 December",
+      "description_ar": "الجسور حقق أعلى أداء بمتوسط 11.3%",
+      "profit": 11.3,
+      "date": "2024-12-30",
+      "trades_count": 1
+    },
+    {
+      "bot_id": "al_hout",
+      "title_ar": "🏆 نجم الأسبوع - 23 December",
+      "description_ar": "الحوت حقق أعلى أداء بمتوسط 4.0%",
+      "profit": 4.0,
+      "date": "2024-12-23",
+      "trades_count": 1
+    }
+  ],
+  "legendary_trades": [
+    {
+      "id": "al_jasour_BNB-USD_2_7214",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "BNB-USD",
+      "entry_date": "2024-12-30",
+      "entry_time": "12:16",
+      "entry_price": 322.54,
+      "exit_date": "2025-01-05",
+      "exit_time": "9:29",
+      "exit_price": 358.88,
+      "profit_pct": 11.27,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_jasour_BTC-USD_7_7847",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "BTC-USD",
+      "entry_date": "2025-05-07",
+      "entry_time": "13:59",
+      "entry_price": 41664.42,
+      "exit_date": "2025-05-10",
+      "exit_time": "11:09",
+      "exit_price": 46281.09,
+      "profit_pct": 11.08,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_jasour_ETH-USD_6_7833",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "ETH-USD",
+      "entry_date": "2025-11-13",
+      "entry_time": "10:02",
+      "entry_price": 2348.15,
+      "exit_date": "2025-11-20",
+      "exit_time": "9:42",
+      "exit_price": 2604.31,
+      "profit_pct": 10.91,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_jasour_ETH-USD_5_5792",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "ETH-USD",
+      "entry_date": "2025-10-12",
+      "entry_time": "11:18",
+      "entry_price": 2366.23,
+      "exit_date": "2025-10-18",
+      "exit_time": "12:19",
+      "exit_price": 2580.5,
+      "profit_pct": 9.06,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_jasour_ADA-USD_4_1359",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "ADA-USD",
+      "entry_date": "2025-04-29",
+      "entry_time": "11:01",
+      "entry_price": 0.51,
+      "exit_date": "2025-05-06",
+      "exit_time": "12:27",
+      "exit_price": 0.55,
+      "profit_pct": 8.67,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_jasour_BTC-USD_6_1207",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "BTC-USD",
+      "entry_date": "2025-07-07",
+      "entry_time": "9:14",
+      "entry_price": 41676.83,
+      "exit_date": "2025-07-11",
+      "exit_time": "14:55",
+      "exit_price": 45287.7,
+      "profit_pct": 8.66,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_jasour_BNB-USD_7_8374",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "BNB-USD",
+      "entry_date": "2025-03-21",
+      "entry_time": "15:41",
+      "entry_price": 314.69,
+      "exit_date": "2025-03-26",
+      "exit_time": "9:16",
+      "exit_price": 341.74,
+      "profit_pct": 8.6,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_hout_AAPL_3_1752",
+      "bot_id": "al_hout",
+      "bot_name": "الحوت",
+      "bot_emoji": "🐋",
+      "symbol": "AAPL",
+      "entry_date": "2025-08-17",
+      "entry_time": "15:18",
+      "entry_price": 183.47,
+      "exit_date": "2025-08-22",
+      "exit_time": "10:50",
+      "exit_price": 198.54,
+      "profit_pct": 8.22,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_maestro_MSFT_7_6285",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "MSFT",
+      "entry_date": "2025-02-07",
+      "entry_time": "11:06",
+      "entry_price": 376.77,
+      "exit_date": "2025-02-13",
+      "exit_time": "11:23",
+      "exit_price": 407.12,
+      "profit_pct": 8.06,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_maestro_MSFT_10_2128",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "MSFT",
+      "entry_date": "2025-03-10",
+      "entry_time": "12:59",
+      "entry_price": 373.14,
+      "exit_date": "2025-03-13",
+      "exit_time": "14:23",
+      "exit_price": 403.08,
+      "profit_pct": 8.03,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_hout_AAPL_8_4763",
+      "bot_id": "al_hout",
+      "bot_name": "الحوت",
+      "bot_emoji": "🐋",
+      "symbol": "AAPL",
+      "entry_date": "2025-09-20",
+      "entry_time": "12:27",
+      "entry_price": 171.21,
+      "exit_date": "2025-09-26",
+      "exit_time": "12:55",
+      "exit_price": 184.81,
+      "profit_pct": 7.94,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_jasour_SOL-USD_2_3362",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "SOL-USD",
+      "entry_date": "2025-03-29",
+      "entry_time": "14:29",
+      "entry_price": 96.38,
+      "exit_date": "2025-04-03",
+      "exit_time": "10:52",
+      "exit_price": 103.88,
+      "profit_pct": 7.77,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_maestro_MSFT_1_5542",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "MSFT",
+      "entry_date": "2025-01-24",
+      "entry_time": "9:40",
+      "entry_price": 389.13,
+      "exit_date": "2025-01-27",
+      "exit_time": "14:32",
+      "exit_price": 418.83,
+      "profit_pct": 7.63,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_maestro_AMZN_6_3514",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "AMZN",
+      "entry_date": "2025-12-09",
+      "entry_time": "14:41",
+      "entry_price": 153.46,
+      "exit_date": "2025-12-11",
+      "exit_time": "15:55",
+      "exit_price": 165.14,
+      "profit_pct": 7.61,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_jasour_ADA-USD_3_7807",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "ADA-USD",
+      "entry_date": "2025-03-20",
+      "entry_time": "11:12",
+      "entry_price": 0.52,
+      "exit_date": "2025-03-23",
+      "exit_time": "10:31",
+      "exit_price": 0.56,
+      "profit_pct": 7.58,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_maestro_MSFT_12_8324",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "MSFT",
+      "entry_date": "2025-10-22",
+      "entry_time": "14:51",
+      "entry_price": 363.52,
+      "exit_date": "2025-10-26",
+      "exit_time": "9:15",
+      "exit_price": 390.31,
+      "profit_pct": 7.37,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_maestro_MSFT_9_1725",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "MSFT",
+      "entry_date": "2025-11-23",
+      "entry_time": "14:08",
+      "entry_price": 394.12,
+      "exit_date": "2025-11-27",
+      "exit_time": "10:05",
+      "exit_price": 422.96,
+      "profit_pct": 7.32,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_jasour_SOL-USD_6_4830",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "SOL-USD",
+      "entry_date": "2025-04-27",
+      "entry_time": "13:08",
+      "entry_price": 95.92,
+      "exit_date": "2025-04-30",
+      "exit_time": "11:07",
+      "exit_price": 102.83,
+      "profit_pct": 7.21,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_hout_AAPL_9_8553",
+      "bot_id": "al_hout",
+      "bot_name": "الحوت",
+      "bot_emoji": "🐋",
+      "symbol": "AAPL",
+      "entry_date": "2025-03-24",
+      "entry_time": "14:05",
+      "entry_price": 174.63,
+      "exit_date": "2025-03-28",
+      "exit_time": "12:28",
+      "exit_price": 187.14,
+      "profit_pct": 7.17,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_qannas_7010.SR_8_4801",
+      "bot_id": "al_qannas",
+      "bot_name": "القناص",
+      "bot_emoji": "🎯",
+      "symbol": "7010.SR",
+      "entry_date": "2025-08-25",
+      "entry_time": "11:13",
+      "entry_price": 126.05,
+      "exit_date": "2025-08-29",
+      "exit_time": "15:58",
+      "exit_price": 135.02,
+      "profit_pct": 7.12,
+      "status": "closed",
+      "market": "saudi"
+    },
+    {
+      "id": "al_jasour_ADA-USD_5_5582",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "ADA-USD",
+      "entry_date": "2025-10-29",
+      "entry_time": "14:12",
+      "entry_price": 0.54,
+      "exit_date": "2025-11-01",
+      "exit_time": "12:18",
+      "exit_price": 0.58,
+      "profit_pct": 7.04,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_jasour_BTC-USD_1_8839",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "BTC-USD",
+      "entry_date": "2025-03-10",
+      "entry_time": "9:32",
+      "entry_price": 41477.71,
+      "exit_date": "2025-03-14",
+      "exit_time": "14:44",
+      "exit_price": 44369.94,
+      "profit_pct": 6.97,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_hout_BTC-USD_3_2842",
+      "bot_id": "al_hout",
+      "bot_name": "الحوت",
+      "bot_emoji": "🐋",
+      "symbol": "BTC-USD",
+      "entry_date": "2025-10-14",
+      "entry_time": "13:39",
+      "entry_price": 41005.82,
+      "exit_date": "2025-10-18",
+      "exit_time": "12:55",
+      "exit_price": 43780.65,
+      "profit_pct": 6.77,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_maestro_TSLA_10_9490",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "TSLA",
+      "entry_date": "2025-01-17",
+      "entry_time": "13:09",
+      "entry_price": 235.82,
+      "exit_date": "2025-01-20",
+      "exit_time": "15:38",
+      "exit_price": 251.38,
+      "profit_pct": 6.6,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_maestro_NVDA_6_2540",
+      "bot_id": "al_maestro",
+      "bot_name": "المايسترو",
+      "bot_emoji": "🎭",
+      "symbol": "NVDA",
+      "entry_date": "2025-09-16",
+      "entry_time": "14:58",
+      "entry_price": 497.83,
+      "exit_date": "2025-09-20",
+      "exit_time": "12:02",
+      "exit_price": 530.5,
+      "profit_pct": 6.56,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_hout_AAPL_0_4727",
+      "bot_id": "al_hout",
+      "bot_name": "الحوت",
+      "bot_emoji": "🐋",
+      "symbol": "AAPL",
+      "entry_date": "2025-08-04",
+      "entry_time": "9:42",
+      "entry_price": 181.41,
+      "exit_date": "2025-08-06",
+      "exit_time": "15:10",
+      "exit_price": 193.15,
+      "profit_pct": 6.47,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_jasour_BNB-USD_6_9817",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "BNB-USD",
+      "entry_date": "2025-07-09",
+      "entry_time": "15:23",
+      "entry_price": 302.82,
+      "exit_date": "2025-07-16",
+      "exit_time": "9:33",
+      "exit_price": 322.16,
+      "profit_pct": 6.39,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_hout_NVDA_4_6716",
+      "bot_id": "al_hout",
+      "bot_name": "الحوت",
+      "bot_emoji": "🐋",
+      "symbol": "NVDA",
+      "entry_date": "2025-10-31",
+      "entry_time": "14:53",
+      "entry_price": 496.56,
+      "exit_date": "2025-11-04",
+      "exit_time": "14:39",
+      "exit_price": 527.91,
+      "profit_pct": 6.31,
+      "status": "closed",
+      "market": "us"
+    },
+    {
+      "id": "al_jasour_ETH-USD_4_4628",
+      "bot_id": "al_jasour",
+      "bot_name": "الجسور",
+      "bot_emoji": "🦅",
+      "symbol": "ETH-USD",
+      "entry_date": "2025-07-29",
+      "entry_time": "13:46",
+      "entry_price": 2410.0,
+      "exit_date": "2025-07-31",
+      "exit_time": "14:17",
+      "exit_price": 2561.43,
+      "profit_pct": 6.28,
+      "status": "closed",
+      "market": "crypto"
+    },
+    {
+      "id": "al_hout_TSLA_5_7392",
+      "bot_id": "al_hout",
+      "bot_name": "الحوت",
+      "bot_emoji": "🐋",
+      "symbol": "TSLA",
+      "entry_date": "2025-04-28",
+      "entry_time": "15:40",
+      "entry_price": 235.79,
+      "exit_date": "2025-04-30",
+      "exit_time": "15:55",
+      "exit_price": 250.53,
+      "profit_pct": 6.25,
+      "status": "closed",
+      "market": "us"
+    }
+  ]
 }
