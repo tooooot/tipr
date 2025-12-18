@@ -5,10 +5,10 @@ export default function BottomNav() {
     const location = useLocation();
 
     const items = [
-        { path: '/live', label: 'البث', icon: '📡' },
+        { path: '/live-events', label: 'الفرص', icon: '⚡', badge: true },
         { path: '/bots', label: 'الروبوتات', icon: '🤖' },
         { path: '/portfolio', label: 'المحفظة', icon: '💼' },
-        { path: '/live-events', label: 'الأحداث', icon: '⚡', badge: true },
+        { path: '/trades', label: 'الصفقات', icon: '📊' },
         { path: '/more', label: 'المزيد', icon: '☰' }
     ];
 
