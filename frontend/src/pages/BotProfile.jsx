@@ -203,6 +203,8 @@ export default function BotProfile() {
     const [isCopied, setIsCopied] = useState(false);
     const [showMarketModal, setShowMarketModal] = useState(false);
     const [selectedMarkets, setSelectedMarkets] = useState({ saudi: true, us: true, crypto: true });
+    const [weeklyChampionships, setWeeklyChampionships] = useState([]);
+    const [expandedWeek, setExpandedWeek] = useState(null);
 
     useEffect(() => {
         const details = BOT_DETAILS[botId] || BOT_DETAILS['al_maestro'];
@@ -210,6 +212,24 @@ export default function BotProfile() {
         let botTrades = realTradesData ? realTradesData.filter(t => t.bot_id === botId) : [];
         botTrades.sort((a, b) => new Date(b.entry_date) - new Date(a.entry_date));
         setTrades(botTrades);
+
+        // Load weekly championships from history_events.json
+        import('../data/history_events.json').then(historyData => {
+            if (historyData.default && historyData.default.awards) {
+                const championships = historyData.default.awards
+                    .filter(award => award.bot_id === botId)
+                    .map(award => ({
+                        date: award.date,
+                        title: award.title_ar,
+                        profit: award.profit,
+                        description: award.description_ar
+                    }))
+                    .sort((a, b) => new Date(b.date) - new Date(a.date));
+                setWeeklyChampionships(championships);
+            }
+        }).catch(() => {
+            setWeeklyChampionships([]);
+        });
 
         // Check if already copied (Legacy or New Object Format)
         const copiedBots = JSON.parse(localStorage.getItem('copied_bots') || '[]');

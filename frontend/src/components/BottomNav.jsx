@@ -18,7 +18,7 @@ export default function BottomNav() {
     // This places Portfolio on the far right (Arabic 'Start') and More on the far left.
     const items = [
         { icon: '⚙️', label: 'المزيد', path: '/more' },
-        { icon: '⏱️', label: 'آلة الزمن', path: '/time-machine' },
+        { icon: '🚨', label: 'الفرص', path: '/opportunities', hasLive: true },
         { icon: '🤖', label: 'الروبوتات', path: '/bots', isMain: true },
         { icon: '🔔', label: 'التنبيهات', path: '/notifications' },
         { icon: '💼', label: 'المحفظة', path: '/portfolio' },
@@ -76,6 +76,22 @@ export default function BottomNav() {
                             }}>
                                 {unreadCount}
                             </div>
+                        )}
+
+                        {/* Live Indicator for Opportunities */}
+                        {item.hasLive && (
+                            <div style={{
+                                position: 'absolute',
+                                top: '0px',
+                                right: '25%',
+                                width: '8px',
+                                height: '8px',
+                                borderRadius: '50%',
+                                background: styles.green,
+                                border: '2px solid #0f172a',
+                                boxShadow: isActive ? 'none' : `0 0 8px ${styles.green}`,
+                                animation: isActive ? 'none' : 'pulse 2s infinite'
+                            }} />
                         )}
 
                         {/* Icon */}
