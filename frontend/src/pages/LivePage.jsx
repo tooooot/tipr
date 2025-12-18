@@ -184,11 +184,11 @@ export default function LivePage() {
         { id: 'timer', component: <SlideTimer />, bgClass: 'hero-bg-default' }
     ];
 
-    // --- Auto Play ---
+    // --- Auto Play (Faster: 3s instead of 5s) ---
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentSlide(prev => (prev + 1) % SLIDES_CONFIG.length);
-        }, 5000);
+        }, 3000); // Faster: 3 seconds
         return () => clearInterval(timer);
     }, [SLIDES_CONFIG.length]);
 
@@ -326,10 +326,10 @@ export default function LivePage() {
                 </>
             )}
 
-            {/* 4. Live Feed */}
+            {/* 4. Live Events Feed */}
             <div className="activity-feed-section" style={isStreamMode ? { height: 'calc(100vh - 400px)' } : {}}>
                 <div className="feed-header">
-                    <span>⚡ نبض السوق</span>
+                    <span>📡 الأحداث المباشرة</span>
                     <div className="live-indicator"></div>
                 </div>
 
