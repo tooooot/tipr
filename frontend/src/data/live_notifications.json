@@ -1,5 +1,22 @@
 [
   {
+    "id": 25,
+    "timestamp": "2025-12-18T04:19:12.654584",
+    "time": "04:19",
+    "bot_id": "al_jasour",
+    "bot_name": "الجسور 🦅",
+    "symbol": "DOGEUSDT",
+    "stock_name": "Dogecoin",
+    "emoji": "🐕",
+    "market": "crypto",
+    "signal": "شراء مخاطر عالي",
+    "reason": "هبوط حاد -5.1% - فرصة انعكاس",
+    "price": 0.12559,
+    "confidence": 70,
+    "read": false,
+    "type": "opportunity"
+  },
+  {
     "id": 24,
     "timestamp": "2025-12-18T04:08:21.355463",
     "time": "04:08",
@@ -828,23 +845,6 @@
     "signal": "شراء",
     "reason": "السعر قريب من قاع 24 ساعة (0.00%)",
     "price": 171.23,
-    "confidence": 75,
-    "read": false,
-    "type": "opportunity"
-  },
-  {
-    "id": 6,
-    "timestamp": "2025-12-17T23:54:36.456352",
-    "time": "23:54",
-    "bot_id": "sayyad_alfors",
-    "bot_name": "صياد الفرص 🏹",
-    "symbol": "AAPL",
-    "stock_name": "Apple",
-    "emoji": "🍎",
-    "market": "us",
-    "signal": "شراء",
-    "reason": "السعر قريب من قاع 24 ساعة (0.00%)",
-    "price": 273.02,
     "confidence": 75,
     "read": false,
     "type": "opportunity"

@@ -22,6 +22,7 @@ import LiveChartPage from './pages/LiveChartPage';
 import OpportunitiesPage from './pages/OpportunitiesPage';
 import RobotStatusPage from './pages/RobotStatusPage';
 import LiveEventsPage from './pages/LiveEventsPage';
+import NotificationBell from './components/NotificationBell';
 
 function App() {
   // System Notification Setup
@@ -56,6 +57,7 @@ function App() {
 
   return (
     <BrowserRouter>
+      <NotificationBell />
       <Routes>
         <Route path="/" element={<Navigate to="/live" replace />} />
         <Route path="/dashboard" element={<Dashboard />} />
