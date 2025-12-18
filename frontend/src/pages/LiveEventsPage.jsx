@@ -190,13 +190,28 @@ export default function LiveEventsPage() {
                             filteredEvents.map((event, idx) => (
                                 <div
                                     key={event.id}
+                                    onClick={() => {
+                                        if (event.type === 'opportunity' && event.opportunityId) {
+                                            navigate(`/opportunity/${event.opportunityId}`);
+                                        }
+                                    }}
                                     style={{
                                         background: '#1e293b',
                                         borderRadius: '12px',
                                         padding: '16px',
                                         borderLeft: `4px solid ${getEventColor(event.type)}`,
                                         opacity: 0,
-                                        animation: `fadeIn 0.3s ease-out ${idx * 0.05}s forwards`
+                                        animation: `fadeIn 0.3s ease-out ${idx * 0.05}s forwards`,
+                                        cursor: event.type === 'opportunity' ? 'pointer' : 'default',
+                                        transition: 'transform 0.2s'
+                                    }}
+                                    onMouseEnter={(e) => {
+                                        if (event.type === 'opportunity') {
+                                            e.currentTarget.style.transform = 'translateX(-4px)';
+                                        }
+                                    }}
+                                    onMouseLeave={(e) => {
+                                        e.currentTarget.style.transform = 'translateX(0)';
                                     }}
                                 >
                                     <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px' }}>
@@ -257,6 +272,20 @@ export default function LiveEventsPage() {
                                                             ❌ لم يتم التنفيذ: {event.reason}
                                                         </span>
                                                     )}
+                                                </div>
+                                            )}
+
+                                            {/* Click hint for opportunities */}
+                                            {event.type === 'opportunity' && event.opportunityId && (
+                                                <div style={{
+                                                    marginTop: '8px',
+                                                    fontSize: '11px',
+                                                    color: styles.gold,
+                                                    display: 'flex',
+                                                    alignItems: 'center',
+                                                    gap: '4px'
+                                                }}>
+                                                    👉 اضغط لعرض التوصية الكاملة
                                                 </div>
                                             )}
                                         </div>

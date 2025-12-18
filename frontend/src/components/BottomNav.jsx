@@ -1,120 +1,101 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { styles } from '../styles/theme';
 
 export default function BottomNav() {
     const location = useLocation();
-    const [unreadCount, setUnreadCount] = useState(0);
 
-    // Simulate incoming notifications
-    useEffect(() => {
-        // In a real app, this would poll the backend or use a websocket.
-        // Here we simulate alert to satisfy "Receive notifications now".
-        setUnreadCount(3);
-    }, []);
-
-    // Ordered for LTR display (Left -> Right):
-    // [More] [Time Machine] [BOTS] [Notifications] [Portfolio]
-    // This places Portfolio on the far right (Arabic 'Start') and More on the far left.
     const items = [
-        { icon: '⚙️', label: 'المزيد', path: '/more' },
-        { icon: '🚨', label: 'الفرص', path: '/opportunities', hasLive: true },
-        { icon: '🤖', label: 'الروبوتات', path: '/bots', isMain: true },
-        { icon: '🔔', label: 'التنبيهات', path: '/notifications' },
-        { icon: '💼', label: 'المحفظة', path: '/portfolio' },
+        { path: '/live', label: 'البث', icon: '📡' },
+        { path: '/bots', label: 'الروبوتات', icon: '🤖' },
+        { path: '/portfolio', label: 'المحفظة', icon: '💼' },
+        { path: '/live-events', label: 'الأحداث', icon: '⚡', badge: true },
+        { path: '/more', label: 'المزيد', icon: '☰' }
     ];
 
     return (
         <nav style={{
             position: 'fixed',
             bottom: 0,
-            left: '50%',
-            transform: 'translateX(-50%)',
-            width: '100%',
-            maxWidth: '430px',
-            background: '#0f172a', // Solid dark for professional look
+            left: 0,
+            right: 0,
+            background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%)',
+            backdropFilter: 'blur(10px)',
             borderTop: '1px solid #1e293b',
-            padding: '12px 0 24px 0', // Extra bottom padding for iPhone handle
             display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            zIndex: 1000
+            justifyContent: 'space-around',
+            padding: '8px 0 max(8px, env(safe-area-inset-bottom))',
+            zIndex: 1000,
+            boxShadow: '0 -4px 20px rgba(0, 0, 0, 0.3)'
         }}>
-            {items.map((item, i) => {
+            {items.map((item) => {
                 const isActive = location.pathname === item.path;
-                const isNotif = item.path === '/notifications';
-
                 return (
-                    <Link key={i} to={item.path} style={{
-                        flex: 1,
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        textDecoration: 'none',
-                        gap: '6px',
-                        transition: 'all 0.2s',
-                        opacity: isActive ? 1 : 0.6,
-                        position: 'relative'
-                    }}>
-                        {/* Notification Badge */}
-                        {isNotif && unreadCount > 0 && (
-                            <div style={{
-                                position: 'absolute',
-                                top: '-2px',
-                                right: '25%',
-                                background: styles.red,
-                                color: 'white',
-                                fontSize: '8px',
-                                width: '14px',
-                                height: '14px',
-                                borderRadius: '50%',
-                                display: 'flex',
-                                alignItems: 'center',
-                                justifyContent: 'center',
-                                border: '2px solid #0f172a'
-                            }}>
-                                {unreadCount}
-                            </div>
-                        )}
-
-                        {/* Live Indicator for Opportunities */}
-                        {item.hasLive && (
-                            <div style={{
-                                position: 'absolute',
-                                top: '0px',
-                                right: '25%',
-                                width: '8px',
-                                height: '8px',
-                                borderRadius: '50%',
-                                background: styles.green,
-                                border: '2px solid #0f172a',
-                                boxShadow: isActive ? 'none' : `0 0 8px ${styles.green}`,
-                                animation: isActive ? 'none' : 'pulse 2s infinite'
-                            }} />
-                        )}
-
-                        {/* Icon */}
-                        <div style={{
-                            fontSize: '24px',
-                            color: isActive ? styles.gold : '#94a3b8',
-                            filter: isActive ? 'drop-shadow(0 0 8px rgba(251, 191, 36, 0.4))' : 'none'
-                        }}>
+                    <Link
+                        key={item.path}
+                        to={item.path}
+                        style={{
+                            flex: 1,
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            gap: '4px',
+                            textDecoration: 'none',
+                            color: isActive ? '#fbbf24' : '#94a3b8',
+                            position: 'relative',
+                            padding: '8px',
+                            transition: 'all 0.2s ease'
+                        }}
+                    >
+                        {/* Icon with Badge */}
+                        <div style={{ position: 'relative', fontSize: '24px' }}>
                             {item.icon}
+                            {item.badge && (
+                                <div style={{
+                                    position: 'absolute',
+                                    top: '-4px',
+                                    right: '-4px',
+                                    width: '8px',
+                                    height: '8px',
+                                    background: '#ef4444',
+                                    borderRadius: '50%',
+                                    border: '2px solid #0f172a',
+                                    animation: 'pulse 2s infinite'
+                                }} />
+                            )}
                         </div>
 
                         {/* Label */}
                         <span style={{
-                            fontSize: '10px',
+                            fontSize: '11px',
                             fontWeight: isActive ? 'bold' : 'normal',
-                            color: isActive ? styles.gold : '#94a3b8',
-                            fontFamily: 'Cairo, sans-serif'
+                            transition: 'all 0.2s'
                         }}>
                             {item.label}
                         </span>
+
+                        {/* Active Indicator */}
+                        {isActive && (
+                            <div style={{
+                                position: 'absolute',
+                                top: 0,
+                                left: '50%',
+                                transform: 'translateX(-50%)',
+                                width: '32px',
+                                height: '3px',
+                                background: '#fbbf24',
+                                borderRadius: '0 0 4px 4px'
+                            }} />
+                        )}
                     </Link>
                 );
             })}
+
+            <style>{`
+                @keyframes pulse {
+                    0%, 100% { opacity: 1; transform: scale(1); }
+                    50% { opacity: 0.8; transform: scale(1.1); }
+                }
+            `}</style>
         </nav>
     );
 }

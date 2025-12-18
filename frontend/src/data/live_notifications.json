@@ -1,5 +1,22 @@
 [
   {
+    "id": 70,
+    "timestamp": "2025-12-18T07:39:43.109155",
+    "time": "07:39",
+    "bot_id": "al_qannas",
+    "bot_name": "القناص 🎯",
+    "symbol": "XRPUSDT",
+    "stock_name": "XRP",
+    "emoji": "💧",
+    "market": "crypto",
+    "signal": "شراء قوي",
+    "reason": "RSI منخفض جداً (29) - فرصة ارتداد",
+    "price": 1.8563,
+    "confidence": 85,
+    "read": false,
+    "type": "opportunity"
+  },
+  {
     "id": 69,
     "timestamp": "2025-12-18T07:17:49.939363",
     "time": "07:17",
@@ -828,23 +845,6 @@
     "signal": "شراء قوي",
     "reason": "RSI منخفض جداً (25) - فرصة ارتداد",
     "price": 0.12587,
-    "confidence": 85,
-    "read": false,
-    "type": "opportunity"
-  },
-  {
-    "id": 20,
-    "timestamp": "2025-12-18T04:07:21.839359",
-    "time": "04:07",
-    "bot_id": "al_qannas",
-    "bot_name": "القناص 🎯",
-    "symbol": "BNBUSDT",
-    "stock_name": "BNB",
-    "emoji": "🔶",
-    "market": "crypto",
-    "signal": "شراء قوي",
-    "reason": "RSI منخفض جداً (29) - فرصة ارتداد",
-    "price": 842.21,
     "confidence": 85,
     "read": false,
     "type": "opportunity"

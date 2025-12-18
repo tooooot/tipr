@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import BotsPage from './pages/BotsPage';
 import BotProfile from './pages/BotProfile';
 import TradeDetails from './pages/TradeDetails';
+import OpportunityDetails from './pages/OpportunityDetails';
 import PortfolioPage from './pages/PortfolioPage';
 import TradesPage from './pages/TradesPage';
 import ChartCenterPage from './pages/ChartCenterPage';
@@ -79,6 +80,7 @@ function App() {
         <Route path="/opportunities" element={<OpportunitiesPage />} />
         <Route path="/robot-status" element={<RobotStatusPage />} />
         <Route path="/live-events" element={<LiveEventsPage />} />
+        <Route path="/opportunity/:opportunityId" element={<OpportunityDetails />} />
         <Route path="/verification" element={<VerificationPage />} />
 
         {/* Fallback routes */}
