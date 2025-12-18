@@ -14,7 +14,7 @@ import TimeMachinePage from './pages/TimeMachinePage';
 import LivePage from './pages/LivePage';
 import NewsPage from './pages/NewsPage';
 import VerificationPage from './pages/VerificationPage';
-import DesignGallery from './pages/DesignGallery';
+
 import ActivityPage from './pages/ActivityPage';
 import HistoryPage from './pages/HistoryPage';
 import NotificationsPage from './pages/NotificationsPage';
@@ -71,7 +71,6 @@ function App() {
         <Route path="/activity" element={<ActivityPage />} />
         <Route path="/history" element={<HistoryPage />} />
         <Route path="/notifications" element={<NotificationsPage />} />
-        <Route path="/designs" element={<DesignGallery />} />
         <Route path="/verification" element={<VerificationPage />} />
 
         {/* Fallback routes */}

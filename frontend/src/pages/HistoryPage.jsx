@@ -5,6 +5,27 @@ import { styles } from '../styles/theme';
 import BottomNav from '../components/BottomNav';
 import historyEventsData from '../data/history_events.json';
 
+// Bot ID to Arabic Name Mapping
+const BOT_NAMES = {
+    'al_maestro': { name_ar: 'المايسترو', emoji: '🤖' },
+    'al_qannas': { name_ar: 'القناص', emoji: '🦁' },
+    'al_hout': { name_ar: 'الحوت', emoji: '🐋' },
+    'sayyad_alfors': { name_ar: 'صياد الفرص', emoji: '🦅' },
+    'smart_investor': { name_ar: 'المستثمر الذكي', emoji: '🧠' },
+    'wave_breaker': { name_ar: 'كاسر الأمواج', emoji: '🌊' },
+    'gap_hunter': { name_ar: 'صائد الفجوات', emoji: '🕳️' },
+    'momentum_tracker': { name_ar: 'متتبع الزخم', emoji: '🚀' },
+    'shield_keeper': { name_ar: 'حارس المحفظة', emoji: '🛡️' },
+    'indicator_pro': { name_ar: 'خبير المؤشرات', emoji: '📊' },
+    'copy_cat': { name_ar: 'الناسخ', emoji: '👥' },
+    'wall_street_wolf': { name_ar: 'ذئب وول ستريت', emoji: '🐺' },
+    'tech_titan': { name_ar: 'عملاق التقنية', emoji: '💻' },
+    'dividend_king': { name_ar: 'ملك التوزيعات', emoji: '👑' },
+    'crypto_king': { name_ar: 'ملك الكريبتو', emoji: '🤴' },
+    'defi_wizard': { name_ar: 'ساحر الـDeFi', emoji: '🧙‍♂️' },
+    'altcoin_hunter': { name_ar: 'صائد الألت كوين', emoji: '🎯' }
+};
+
 export default function HistoryPage() {
     const navigate = useNavigate();
     const [view, setView] = useState('awards'); // awards, legends
@@ -16,6 +37,7 @@ export default function HistoryPage() {
             const awards = (historyEventsData.awards || []).map((a, i) => ({
                 id: `award_${i}`,
                 botId: a.bot_id,
+                botInfo: BOT_NAMES[a.bot_id] || { name_ar: a.bot_id, emoji: '🤖' },
                 title: a.title_ar,
                 description: a.description_ar,
                 profit: a.profit,
@@ -27,6 +49,7 @@ export default function HistoryPage() {
             const legends = (historyEventsData.legendary_trades || []).map((l, i) => ({
                 id: `leg_${i}`,
                 botId: l.bot_id,
+                botInfo: BOT_NAMES[l.bot_id] || { name_ar: l.bot_id, emoji: '🤖' },
                 symbol: l.symbol,
                 description: l.description_ar,
                 profit: l.profit,
@@ -90,11 +113,17 @@ export default function HistoryPage() {
                     {/* Timeline Grid */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                         {activeList.map((item, i) => (
-                            <div key={i} style={{
-                                display: 'flex', gap: '16px',
-                                opacity: 0,
-                                animation: `fadeIn 0.5s ease-out ${i * 0.05}s forwards` // Staggered animation
-                            }}>
+                            <div
+                                key={i}
+                                onClick={() => navigate(`/bot/${item.botId}`)}
+                                style={{
+                                    display: 'flex',
+                                    gap: '16px',
+                                    opacity: 0,
+                                    animation: `fadeIn 0.5s ease-out ${i * 0.05}s forwards`,
+                                    cursor: 'pointer'
+                                }}
+                            >
                                 {/* Date Column */}
                                 <div style={{
                                     display: 'flex', flexDirection: 'column', alignItems: 'center',
@@ -115,8 +144,22 @@ export default function HistoryPage() {
                                         ? '0 4px 15px rgba(245, 158, 11, 0.1)'
                                         : '0 4px 15px rgba(239, 68, 68, 0.15)',
                                     position: 'relative',
-                                    overflow: 'hidden'
-                                }}>
+                                    overflow: 'hidden',
+                                    transition: 'transform 0.2s, boxShadow 0.2s'
+                                }}
+                                    onMouseEnter={e => {
+                                        e.currentTarget.style.transform = 'translateX(-4px)';
+                                        e.currentTarget.style.boxShadow = view === 'awards'
+                                            ? '0 6px 20px rgba(245, 158, 11, 0.2)'
+                                            : '0 6px 20px rgba(239, 68, 68, 0.25)';
+                                    }}
+                                    onMouseLeave={e => {
+                                        e.currentTarget.style.transform = 'translateX(0)';
+                                        e.currentTarget.style.boxShadow = view === 'awards'
+                                            ? '0 4px 15px rgba(245, 158, 11, 0.1)'
+                                            : '0 4px 15px rgba(239, 68, 68, 0.15)';
+                                    }}
+                                >
                                     {/* Background Shine */}
                                     <div style={{
                                         position: 'absolute', top: '-50%', left: '-50%', width: '200%', height: '200%',
@@ -124,9 +167,12 @@ export default function HistoryPage() {
                                     }}></div>
 
                                     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '8px', position: 'relative' }}>
-                                        <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: 0, color: 'white' }}>
-                                            {item.botId.replace('_', ' ')}
-                                        </h3>
+                                        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                            <span style={{ fontSize: '28px' }}>{item.botInfo.emoji}</span>
+                                            <h3 style={{ fontSize: '18px', fontWeight: 'bold', margin: 0, color: 'white' }}>
+                                                {item.botInfo.name_ar}
+                                            </h3>
+                                        </div>
                                         <span style={{ fontSize: '24px' }}>{view === 'awards' ? '👑' : '🚀'}</span>
                                     </div>
 
@@ -146,6 +192,11 @@ export default function HistoryPage() {
                                     }}>
                                         +{item.profit}%
                                     </div>
+
+                                    {/* Click Hint */}
+                                    <p style={{ fontSize: '11px', color: '#64748b', marginTop: '8px', marginBottom: 0 }}>
+                                        اضغط لعرض ملف الروبوت ←
+                                    </p>
                                 </div>
                             </div>
                         ))}
