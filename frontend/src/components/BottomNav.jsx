@@ -8,7 +8,7 @@ export default function BottomNav() {
         { path: '/live-events', label: 'الفرص', icon: '⚡', badge: true },
         { path: '/bots', label: 'الروبوتات', icon: '🤖' },
         { path: '/portfolio', label: 'المحفظة', icon: '💼' },
-        { path: '/trades', label: 'الصفقات', icon: '📊' },
+        { path: '/history', label: 'الأحداث', icon: '📜' },
         { path: '/more', label: 'المزيد', icon: '☰' }
     ];
 
